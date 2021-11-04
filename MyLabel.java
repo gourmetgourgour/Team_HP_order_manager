@@ -1,4 +1,3 @@
-
 package swing;
 
 import java.awt.Color;
@@ -12,15 +11,15 @@ public class MyLabel extends JLabel implements MouseListener {
 	String place;
 	int count;
 	int index;
-	int[] colors = new int[3];
+	int[] colors = new int[4];
 
 	MyLabel(String text, int index) {
 		this.place = text;
 		this.index = index;
-		if (index < 3) {
-			this.colors[index] += 20;
+		if (index < 4) {
+			this.colors[index] += 65;
 		} else {
-			this.colors[0] = this.colors[1] = this.colors[2] = 20;
+			this.colors[0] = this.colors[1] = this.colors[2] = this.colors[3] = 60 ;
 		}
 
 		this.setForeground(Color.BLUE);
@@ -41,7 +40,7 @@ public class MyLabel extends JLabel implements MouseListener {
 		if (this.index < 3) {
 			this.colors[this.index] += 20;
 		} else {
-			this.colors[0] = this.colors[1] = this.colors[2] = this.colors[0] + 20;
+			this.colors[3] = this.colors[0] = this.colors[1] = this.colors[2] = this.colors[0] + 20;
 		}
 
 		for (int n = 0; n < 3; ++n) {

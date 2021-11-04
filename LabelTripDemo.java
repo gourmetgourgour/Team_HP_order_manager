@@ -25,12 +25,12 @@ public class LabelTripDemo extends JPanel {
 
  public LabelTripDemo() {
   super(new BorderLayout());
-  String[] texts = new String[]{"한라산", "설악산", "남해안", "울릉도"};
-  this.banners = new MyLabel[4];
+  String[] texts = new String[]{"고은아", "김희찬", "이예진", "주지호", "최병훈"};
+  this.banners = new MyLabel[5];
   JPanel startPanel = new JPanel(new GridLayout(1, 2));
   JPanel endPanel = new JPanel(new GridLayout(1, 2));
 
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 5; ++i) {
    this.banners[i] = new MyLabel(texts[i], i);
    if (i < 2) {
     startPanel.add(this.banners[i]);
@@ -40,7 +40,7 @@ public class LabelTripDemo extends JPanel {
   }
 
   this.add(startPanel, "First");
-  message = new JLabel("제주도:0 설악산:0 남해안:0 울릉도:0");
+  message = new JLabel(" 고은아:0  김희찬:0  이예진:0  주지호:0  최병훈:0 ");
   message.setHorizontalAlignment(0);
   message.setPreferredSize(new Dimension(300, 40));
   message.setBackground(Color.WHITE);
@@ -52,7 +52,7 @@ public class LabelTripDemo extends JPanel {
  void setCountMessage() {
   String messageText = "";
 
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 5; ++i) {
    messageText = messageText + this.banners[i].getMessage() + " ";
   }
 

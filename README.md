@@ -1,5 +1,6 @@
-# Team_HP_order_manager
-2021객지프 과제 프로젝트 
+# Team_HP Shoppingmall
+쇼핑몰 GUI설계
 
-사용언어: java (대충 이클립스 java 씀) 
+11월6일 주지호: GuiMenu.java, MainGUI.java 추가
 
+서비스 실행시 처음으로 나오는 화면 기초 틀 

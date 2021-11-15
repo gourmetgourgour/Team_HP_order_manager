@@ -8,8 +8,8 @@ public class GuiUppermenu {
 		JLabel selectedSort = new JLabel();
 		String sortMenus[] = {"옷 종류", "색상", "사이즈", "소재", "빠른 배송", "최신순"};
 	void addMenu() {
-		upperMenu.setPreferredSize(new Dimension(1050,150));
-		sortMenuLabel.setPreferredSize(new Dimension(1000,70));
+		upperMenu.setPreferredSize(new Dimension(1050,130));
+		sortMenuLabel.setPreferredSize(new Dimension(1000,55));
 		sortMenuLabel.setLayout(null);
 		upperMenu.setBackground(Color.white);
 		for(int i=0; i<sortMenus.length; i++) {
@@ -17,7 +17,7 @@ public class GuiUppermenu {
 			sortMenuLabel.add(button);
 			int xcode = 10;										//버튼의 절대위치 정하기
 			xcode += i*(165);
-			button.setBounds(xcode, 10, 150, 50);				
+			button.setBounds(xcode, 5, 150, 50);				
 			button.setBackground(Color.black);					//색깔이안변해요 엉엉ㅠ
 		}
 		upperMenu.add(sortMenuLabel);
@@ -50,10 +50,10 @@ public class GuiUppermenu {
 				sortLabel.setForeground(Color.ORANGE);
 			}
 			selectedSort.add(sortLabel);
-			sortLabel.setBounds(xcode, 10, 200, 50);
+			sortLabel.setBounds(xcode, 0, 200, 50);
 		}
 		selectedSort.add(reset);
-		reset.setBounds(950, 10, 50 ,50);
+		reset.setBounds(950, 0, 50 ,50);
 		upperMenu.add(selectedSort);
 		MainGUI.leftView.add(upperMenu);
 	}

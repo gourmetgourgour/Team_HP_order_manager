@@ -10,7 +10,7 @@ public class ProductGui {
 	void addproduct() {	
 		productPanel.setPreferredSize(new Dimension(1050,550));
 		productPanel.setLayout(new GridLayout(3,4));
-		productPanel.setBackground(Color.black);
+
 		for(int i=0; i<12; i++) {
 			String imgnum = Integer.toString(i+1);
 			ImageIcon pruductImg = new ImageIcon("./images/"+imgnum+".jpg");

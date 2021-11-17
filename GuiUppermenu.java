@@ -6,7 +6,8 @@ public class GuiUppermenu {
 	    JPanel upperMenu = new JPanel();
 		JLabel sortMenuLabel = new JLabel();
 		JLabel selectedSort = new JLabel();
-		String sortMenus[] = {"ì˜· ì¢…ë¥˜", "ìƒ‰ìƒ", "ì‚¬ì´ì¦ˆ", "ì†Œì¬", "ë¹ ë¥¸ ë°°ì†¡", "ìµœì‹ ìˆœ"};
+		String sortMenus[] = {"¿Ê Á¾·ù", "»ö»ó", "»çÀÌÁî", "¼ÒÀç", "ºü¸¥ ¹è¼Û", "ÃÖ½Å¼ø"};
+		String menuColor[] = {"Color.red", "Color.magenta", "Color.green", "Color.blue", "Color.cyan", "Color.orange"};
 	void addMenu() {
 		upperMenu.setPreferredSize(new Dimension(1050,130));
 		sortMenuLabel.setPreferredSize(new Dimension(1000,55));
@@ -15,19 +16,37 @@ public class GuiUppermenu {
 		for(int i=0; i<sortMenus.length; i++) {
 			JButton button = new JButton(sortMenus[i]);
 			sortMenuLabel.add(button);
-			int xcode = 10;										//ë²„íŠ¼ì˜ ì ˆëŒ€ìœ„ì¹˜ ì •í•˜ê¸°
+			int xcode = 10;										//¹öÆ°ÀÇ Àı´ëÀ§Ä¡ Á¤ÇÏ±â
 			xcode += i*(165);
-			button.setBounds(xcode, 5, 150, 50);				
-			button.setBackground(Color.black);					//ìƒ‰ê¹”ì´ì•ˆë³€í•´ìš” ì—‰ì—‰ã… 
+			button.setBounds(xcode, 5, 150, 50);
+			button.setBackground(Color.white);
+			if(i == 0) {
+				button.setForeground(Color.red);
+				}
+				else if(i==1) {
+					button.setForeground(Color.magenta);
+				}
+				else if(i==2) {
+					button.setForeground(Color.green);
+				}
+				else if(i==3) {
+					button.setForeground(Color.blue);
+				}
+				else if(i==4) {
+					button.setForeground(Color.cyan);
+				}
+				else if(i==5) {
+					button.setForeground(Color.ORANGE);
+				}					
 		}
 		upperMenu.add(sortMenuLabel);
 		
 		selectedSort.setPreferredSize(new Dimension(1000, 130));
 		selectedSort.setLayout(null);
-		JButton reset = new JButton("ì´ˆê¸°í™”");
+		JButton reset = new JButton("ÃÊ±âÈ­");
 		
 		for(int i=0;i<sortMenus.length; i++) {
-			int xcode = 90;										//ë²„íŠ¼ì˜ ì ˆëŒ€ìœ„ì¹˜ ì •í•˜ê¸°
+			int xcode = 90;										//¹öÆ°ÀÇ Àı´ëÀ§Ä¡ Á¤ÇÏ±â
 			xcode += i*(140);
 
 			JLabel sortLabel = new JLabel("["+sortMenus[i]+"] :");

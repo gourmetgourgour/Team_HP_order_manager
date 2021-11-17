@@ -6,9 +6,11 @@ import javax.swing.*;
 
 public class ProductGui {
 	JPanel productPanel = new JPanel();
-	
+	JScrollPane scroll = new JScrollPane(productPanel, 
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	void addproduct() {	
-		productPanel.setPreferredSize(new Dimension(1050,550));
+		productPanel.setPreferredSize(new Dimension(1000,500));
 		productPanel.setLayout(new GridLayout(3,4));
 
 		for(int i=0; i<12; i++) {
@@ -19,14 +21,13 @@ public class ProductGui {
 			ImageIcon productimg = new ImageIcon(changeImg);
 			
 			JButton product = new JButton(productimg);
+			product.setBackground(Color.white);
 			productPanel.add(product);
 		}
-		JScrollPane scroll = new JScrollPane(productPanel, 
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		MainGUI.leftView.setBackground(Color.white);
-		MainGUI.leftView.add(productPanel);
+		scroll.setPreferredSize(new Dimension(1000, 550));
+//		MainGUI.leftView.setBackground(Color.white);
+		MainGUI.leftView.add(scroll);
 		
 	}
 	

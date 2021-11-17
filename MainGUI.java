@@ -8,7 +8,7 @@ public class MainGUI {
 	static JPanel menuPanel = new JPanel();
 	static JPanel products = new JPanel();
 	static JPanel leftView = new JPanel();
-	static JFrame mainFrame = new JFrame("í–‰ë³µí•œ íŒë§¤íŒ€");
+	static JFrame mainFrame = new JFrame("Çàº¹ÇÑ ÆÇ¸ÅÆÀ");
 	static Container mainPane = mainFrame.getContentPane();
 	
 	

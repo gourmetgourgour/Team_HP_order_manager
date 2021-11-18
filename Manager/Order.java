@@ -34,13 +34,15 @@ public class Order implements Manageable, UIData {
 	String code = null;
 	
 	 public void read(Scanner scan) {
-		
+		 int arrayCount = 0;
+		 
 		sellId = scan.nextInt();
 		System.out.print(sellId+" ");
 		postal = scan.nextInt();
 		System.out.print(postal+" ");
 		
 		while(true) {
+			
 		code =scan.next();
 		System.out.print(code+"prCode \t");
 			if(code.contentEquals("e"))
@@ -48,15 +50,24 @@ public class Order implements Manageable, UIData {
 			
 		item = (Item)Store2.itemMgr.find(code);
 		sellItemList.add(new OrderedItem(this, this.item, scan));
+		System.out.print("재고 :"+item.prStock+" ");
 		itemCountList.add(scan.nextInt());
+		
+		System.out.print(itemCountList+" 배열 ");
+		
+		item.prStock = item.prStock - itemCountList.get(arrayCount);
+		System.out.print("변경 재고 :"+item.prStock+" ");
+		arrayCount++;
 		}
 		 if (ID == null) {
 		    	System.out.println("사용자 아이디 없음: " + ID);
 		    	System.exit(1);
 		    }
 		 for (int i = 0; i < sellItemList.size(); i++)
-	    	{total += getSubtotal(i);}
+	    	{total += getSubtotal(i);
+	    	}
 		 System.out.print("제품금액 합계: "+total+" ");
+		 
 		 
 		 
 		 ID.id = scan.next();
@@ -67,6 +78,7 @@ public class Order implements Manageable, UIData {
 		 System.out.print(orderDate+" ");
 		 deliveredOn = scan.next();
 		 System.out.print(deliveredOn+" ");
+		 
 		 
 		 
 		ID.addOrder(this);
@@ -131,7 +143,7 @@ public class Order implements Manageable, UIData {
 	}
 	private int getSubtotal(int index) {
 		int SubtotalCal = sellItemList.get(index).subTotal(itemCountList.get(index));
-		System.out.print(SubtotalCal);
+		System.out.print(SubtotalCal+", ");
 		return SubtotalCal;
 	}
 }

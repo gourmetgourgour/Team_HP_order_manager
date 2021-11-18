@@ -1,54 +1,53 @@
 package store;
 
-import java.util.List;
+import java.util.Scanner;
 
-import facade.DataEngineInterface;
+import facade.UIData;
 import mgr.Manageable;
-import mgr.Manager;
 
-public class OrderMgr implements DataEngineInterface  {
-	private static OrderMgr mgr = null;
-	private OrderMgr() {}
-	public static OrderMgr getInstance() {
-		if (mgr == null)
-			mgr = new OrderMgr();
-		return mgr;
+public class OrderedItem implements Manageable, UIData {
+	Order order;
+	Item item;
+
+	OrderedItem(Order order, Item item, Scanner scan) {
+		this.item = item;
+		this.order = order;
 	}
-	public Order getOrder(int index) {
-		return (Order)Store2.orderMgr.mList.get(index);
+	int subTotal(int index) {
+		int subtotal = 0;
+		subtotal = item.prPrice * index; 
+		
+		return subtotal;
 	}
-	private String[] headers = {"주문번호", "ID", "주문제품", "배송일"};
-	public String[] getColumnNames() {
-		return headers;
-	}
-	@Override
-	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 5;
+	public void print() {
+		System.out.format("[%s] %d원 x %d개 = %d원\n", 
+				item.prName, item.prPrice, order.sellItemList.size(), item.prPrice*order.sellItemList.size());
 	}
 	@Override
-	public void readAll(String filename) {
+	public void read(Scanner scan) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public List<Manageable> search(String kwd) {
+	public boolean matches(String kwd) {
 		// TODO Auto-generated method stub
-		return Store2.orderMgr.findAll(kwd);
+		return true;
 	}
 	@Override
-	public void addNewItem(String[] uiTexts) {
+	public void set(Object[] uitexts) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void update(String[] uiTexts) {
+	public String[] getUiTexts() { 
 		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void remove(String kwd) {
-		// TODO Auto-generated method stub
-		
+		String[] texts = new String[6];
+		texts[0] = ""+Order.orderId;
+		texts[1] = item.prName;
+		texts[2] = "1";
+		texts[3] = item.prColor;
+		texts[4] = order.deliveredOn;
+		texts[5] = ""+item.prPrice;
+		return texts;
 	}
 }

@@ -46,7 +46,7 @@ public class BasketGui {
 		basketTable.setPreferredSize(new Dimension(950,700));
 		basketTable.getColumnModel().getColumn(0).setPreferredWidth(40);  //JTable 의 컬럼 길이 조절
 		basketTable.getColumnModel().getColumn(1).setPreferredWidth(20);
-		basketTable.getColumnModel().getColumn(2).setPreferredWidth(300);
+		basketTable.getColumnModel().getColumn(2).setPreferredWidth(100);
 		basketTable.getColumnModel().getColumn(3).setPreferredWidth(200);
 		basketTable.setRowHeight(100);
 		scrollPane.setPreferredSize(new Dimension(1000,500));

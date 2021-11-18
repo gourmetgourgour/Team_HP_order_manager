@@ -1,53 +1,54 @@
 package store;
 
-import java.util.Scanner;
+import java.util.List;
 
-import facade.UIData;
+import facade.DataEngineInterface;
 import mgr.Manageable;
+import mgr.Manager;
 
-public class OrderedItem implements Manageable, UIData {
-	Order order;
-	Item item;
-
-	OrderedItem(Order order, Item item, Scanner scan) {
-		this.item = item;
-		this.order = order;
+public class OrderMgr implements DataEngineInterface  {
+	private static OrderMgr mgr = null;
+	private OrderMgr() {}
+	public static OrderMgr getInstance() {
+		if (mgr == null)
+			mgr = new OrderMgr();
+		return mgr;
 	}
-	int subTotal(int index) {
-		int subtotal = 0;
-		subtotal = item.prPrice * index; 
-		
-		return subtotal;
+	public Order getOrder(int index) {
+		return (Order)Store2.orderMgr.mList.get(index);
 	}
-	public void print() {
-		System.out.format("[%s] %d원 x %d개 = %d원\n", 
-				item.prName, item.prPrice, order.sellItemList.size(), item.prPrice*order.sellItemList.size());
+	private String[] headers = {"주문번호", "ID", "주문제품", "배송일"};
+	public String[] getColumnNames() {
+		return headers;
 	}
 	@Override
-	public void read(Scanner scan) {
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return 5;
+	}
+	@Override
+	public void readAll(String filename) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public boolean matches(String kwd) {
+	public List<Manageable> search(String kwd) {
 		// TODO Auto-generated method stub
-		return true;
+		return Store2.orderMgr.findAll(kwd);
 	}
 	@Override
-	public void set(Object[] uitexts) {
+	public void addNewItem(String[] uiTexts) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public String[] getUiTexts() { 
+	public void update(String[] uiTexts) {
 		// TODO Auto-generated method stub
-		String[] texts = new String[6];
-		texts[0] = ""+Order.orderId;
-		texts[1] = item.prName;
-		texts[2] = "1";
-		texts[3] = item.prColor;
-		texts[4] = order.deliveredOn;
-		texts[5] = ""+item.prPrice;
-		return texts;
+		
+	}
+	@Override
+	public void remove(String kwd) {
+		// TODO Auto-generated method stub
+		
 	}
 }

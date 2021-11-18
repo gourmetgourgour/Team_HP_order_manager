@@ -21,15 +21,13 @@ public class Order implements Manageable, UIData {
 	 String deliveredOn;
 	String orderPR;
 	 
-	 ArrayList<Integer> itemCountList = new ArrayList<>();
+	ArrayList<Integer> itemCountList = new ArrayList<>();
 	 
 	public List<OrderedItem> sellItemList=new ArrayList<>();
 	static public ArrayList<Order> sellList=new ArrayList<>();
 	static public int orderId = 1001;
 	public int sellId=orderId;
-	 
-	 public List<OrderedItem> orderedItemList=new ArrayList<>();
-	 static public ArrayList<Order> orderList=new ArrayList<>(); 
+	static public ArrayList<Order> orderList=new ArrayList<>(); 
 
 	public int total;
 	Item item = null;
@@ -56,9 +54,11 @@ public class Order implements Manageable, UIData {
 		    	System.out.println("사용자 아이디 없음: " + ID);
 		    	System.exit(1);
 		    }
-		 for (int i = 0; i < orderedItemList.size(); i++)
+		 for (int i = 0; i < sellItemList.size(); i++)
 	    	{total += getSubtotal(i);}
 		 System.out.print("제품금액 합계: "+total+" ");
+		 
+		 
 		 ID.id = scan.next();
 		 System.out.print(ID.id+" ");
 		 ID.phoneNum = scan.next();
@@ -83,7 +83,7 @@ public class Order implements Manageable, UIData {
 			return true;
 		if (("" + sellId).equals(kwd))
 		    return true;
-		for (OrderedItem od: orderedItemList)
+		for (OrderedItem od: sellItemList)
 			if (od.item.matches(kwd))
 				return true;
 		if (ID.id.contentEquals(kwd))
@@ -130,7 +130,7 @@ public class Order implements Manageable, UIData {
 		return texts;
 	}
 	private int getSubtotal(int index) {
-		int SubtotalCal = orderedItemList.get(index).subTotal(itemCountList.get(index));
+		int SubtotalCal = sellItemList.get(index).subTotal(itemCountList.get(index));
 		System.out.print(SubtotalCal);
 		return SubtotalCal;
 	}

@@ -10,8 +10,8 @@ public class ProductGui {
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	void addproduct() {	
-		productPanel.setPreferredSize(new Dimension(1000,500));
-		productPanel.setLayout(new GridLayout(3,4));
+		productPanel.setPreferredSize(new Dimension(1000,950));
+		productPanel.setLayout(new GridLayout(3,4, 20, 20));
 
 		for(int i=0; i<12; i++) {
 			String imgnum = Integer.toString(i+1);
@@ -26,7 +26,6 @@ public class ProductGui {
 		}
 		
 		scroll.setPreferredSize(new Dimension(1000, 550));
-//		MainGUI.leftView.setBackground(Color.white);
 		MainGUI.leftView.add(scroll);
 		
 	}

@@ -46,7 +46,7 @@ public class GuiUppermenu {
 		JButton reset = new JButton("초기화");
 		
 		for(int i=0;i<sortMenus.length; i++) {
-			int xcode = 90;										//버튼의 절대위치 정하기
+			int xcode = 70;										//버튼의 절대위치 정하기
 			xcode += i*(140);
 
 			JLabel sortLabel = new JLabel("["+sortMenus[i]+"] :");
@@ -72,9 +72,12 @@ public class GuiUppermenu {
 			sortLabel.setBounds(xcode, 0, 200, 50);
 		}
 		selectedSort.add(reset);
-		reset.setBounds(950, 0, 50 ,50);
+		reset.setBounds(905, 0, 80, 40);
+		reset.setBackground(Color.white);
 		upperMenu.add(selectedSort);
+		
 		MainGUI.leftView.add(upperMenu);
 	}
+	
 	
 }

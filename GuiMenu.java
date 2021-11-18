@@ -40,12 +40,16 @@ public class GuiMenu {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String buttonName = e.getActionCommand();
-			if(buttonName.equals("쇼핑"))
-				JOptionPane.showMessageDialog(null, "쇼핑");
+			if(buttonName.equals("쇼핑")) {
+				MainGUI.basketpanel.setVisible(false);
+				MainGUI.leftView.setVisible(true);
+			}
 			else if(buttonName.equals("주문내역"))
 				JOptionPane.showMessageDialog(null, "주문내역");
-			else if(buttonName.equals("장바구니"))
-				JOptionPane.showMessageDialog(null, "장바구니");
+			else if(buttonName.equals("장바구니")) {
+				MainGUI.leftView.setVisible(false);
+				MainGUI.basketpanel.setVisible(true);
+			}
 			else if(buttonName.equals("로그아웃"))
 				JOptionPane.showMessageDialog(null, "로그아웃");
 		}

@@ -48,6 +48,7 @@ public class BasketGui {
 		basketTable.getColumnModel().getColumn(1).setPreferredWidth(20);
 		basketTable.getColumnModel().getColumn(2).setPreferredWidth(300);
 		basketTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+		basketTable.setRowHeight(100);
 		scrollPane.setPreferredSize(new Dimension(1000,500));
 		clearBasket.addActionListener(Listener);
 		payButton.addActionListener(Listener);

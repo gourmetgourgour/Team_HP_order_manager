@@ -20,7 +20,8 @@ public class Store2 {
 	Scanner scan = new Scanner(System.in);
 	static Manager userMgr = new Manager();
 	static Manager itemMgr = new Manager();
-
+	static Manager orderMgr = new Manager();
+	
 	public void run() {
 		itemMgr.readAll("products.txt", new Factory() {
 			public Manageable create() {
@@ -30,13 +31,25 @@ public class Store2 {
 		System.out.println("\n================= 판매 상품 리스트 =================");
 		//itemMgr.printAll();
 		itemMgr.printAll();
-		
+		System.out.print("\n물건 출력완료\n");
 		userMgr.readAll("user.txt", new Factory() {
 			public Manageable create() { 
 				return new User();
 				};
 		});
 		userMgr.printAll();
+		System.out.print("\n유저 출력완료\n");
+		
+		orderMgr.readAll("order.txt", new Factory(){
+			public Manageable create() { 
+				return new Order();
+				};
+		});
+		orderMgr.printAll();
+		System.out.print("\n오더 출력완료\n");
+		
+		
+		System.out.print("\n재고 수치 변경\n");
 	}
 	
 	/*

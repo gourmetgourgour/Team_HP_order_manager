@@ -1,20 +1,27 @@
 package shoppingMall;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
+import facade.DataEngineInterface;
+import store.*;
 
 public class ProductGui {
 	JPanel productPanel = new JPanel();
 	JScrollPane scroll = new JScrollPane(productPanel, 
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	
+	
 	void addproduct() {	
-		productPanel.setPreferredSize(new Dimension(1000,950));
-		productPanel.setLayout(new GridLayout(3,4, 20, 20));
-
-		for(int i=0; i<12; i++) {
-			String imgnum = Integer.toString(i+1);
+		productPanel.setPreferredSize(new Dimension(1000,7000));
+		productPanel.setLayout(new GridLayout(25,4, 20, 20));
+//		MainGUI.store.itemMgr.printAll();
+		for(int i=0; i<100; i++) {
+			String imgnum = Integer.toString(100000+i+1);
+			
 			ImageIcon pruductImg = new ImageIcon("./images/"+imgnum+".jpg");
 			Image img = pruductImg.getImage();
 			Image changeImg= img.getScaledInstance(150,150, Image.SCALE_SMOOTH);	

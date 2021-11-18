@@ -17,8 +17,8 @@ public class BasketGui {
 		ActionListener Listener = new ButtonListener();
 		String header[] = {"제품명", "수량", "가격", "배송지"};
 		String contents[][] = {
-				{"아디다스져지", "100", "90000원", "경기대학교"},
-				{"삼선스레빠", "50", "8000원", "경희대학교"},							//오더가 들어오면 추가하는 식으로 추후 업데이트.
+				{"아디다스져지", "100", "90000", "경기대학교"},
+				{"삼선스레빠", "50", "8000", "경희대학교"},							//오더가 들어오면 추가하는 식으로 추후 업데이트.
 				{"인텔컴퓨터", "20", "900000", "연세대학교"},
 				{"리눅스컴퓨터", "10", "2000000", "수원대학교"},
 				{"인텔컴퓨터", "20", "900000", "연세대학교"},
@@ -44,6 +44,10 @@ public class BasketGui {
 		
 	void addBasket() {
 		basketTable.setPreferredSize(new Dimension(950,700));
+		basketTable.getColumnModel().getColumn(0).setPreferredWidth(40);  //JTable 의 컬럼 길이 조절
+		basketTable.getColumnModel().getColumn(1).setPreferredWidth(20);
+		basketTable.getColumnModel().getColumn(2).setPreferredWidth(300);
+		basketTable.getColumnModel().getColumn(3).setPreferredWidth(200);
 		scrollPane.setPreferredSize(new Dimension(1000,500));
 		clearBasket.addActionListener(Listener);
 		payButton.addActionListener(Listener);

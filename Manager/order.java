@@ -12,43 +12,76 @@ import mgr.Manageable;
 
 public class Order implements Manageable, UIData {
 	 
-	int sellId;
+
 	int postal;
 	
 	 public User ID =new User();   
 	 boolean isPaid;
-	 String date;
+	 String orderDate;
 	 String deliveredOn;
-	 String orderPR;
+	String orderPR;
+	 
+	 ArrayList<Integer> itemCountList = new ArrayList<>();
 	 
 	public List<OrderedItem> sellItemList=new ArrayList<>();
 	static public ArrayList<Order> sellList=new ArrayList<>();
-	static public int orderId=1;
-	public int orderNum=orderId;
+	static public int orderId = 1001;
+	public int sellId=orderId;
 	 
-	public Item item=new Item();
 	 public List<OrderedItem> orderedItemList=new ArrayList<>();
 	 static public ArrayList<Order> orderList=new ArrayList<>(); 
 
+	public int total;
+	Item item = null;
+	String code = null;
+	
 	 public void read(Scanner scan) {
+		
 		sellId = scan.nextInt();
+		System.out.print(sellId+" ");
 		postal = scan.nextInt();
-		Item item = null;
-		this.item = (Item)Store2.itemMgr.find(item.prCode);
+		System.out.print(postal+" ");
+		
+		while(true) {
+		code =scan.next();
+		System.out.print(code+"prCode \t");
+			if(code.contentEquals("e"))
+				break;
+			
+		item = (Item)Store2.itemMgr.find(code);
+		sellItemList.add(new OrderedItem(this, this.item, scan));
+		itemCountList.add(scan.nextInt());
+		}
+		 if (ID == null) {
+		    	System.out.println("사용자 아이디 없음: " + ID);
+		    	System.exit(1);
+		    }
+		 for (int i = 0; i < orderedItemList.size(); i++)
+	    	{total += getSubtotal(i);}
+		 System.out.print("제품금액 합계: "+total+" ");
+		 ID.id = scan.next();
+		 System.out.print(ID.id+" ");
+		 ID.phoneNum = scan.next();
+		 System.out.print(ID.phoneNum+" ");
+		 orderDate = scan.next();
+		 System.out.print(orderDate+" ");
+		 deliveredOn = scan.next();
+		 System.out.print(deliveredOn+" ");
 		 
 		 
+		ID.addOrder(this);
 	}
 	 public void read(String[] rowTexts, Item item) {
 		 Scanner scan=new Scanner(System.in);
 		 orderPR=rowTexts[0];
-		 this.item=(Item)Store2.itemMgr.find(item.prCode);
+		 this.item=(Item)Store2.itemMgr.find(item.prName);
 		 sellItemList.add(new OrderedItem(this, this.item, scan));
 	 }
 	
 	public boolean matches(String kwd) {
 		if (kwd.length() == 0)
 			return true;
-		if (("" + orderId).equals(kwd))
+		if (("" + sellId).equals(kwd))
 		    return true;
 		for (OrderedItem od: orderedItemList)
 			if (od.item.matches(kwd))
@@ -70,12 +103,12 @@ public class Order implements Manageable, UIData {
 	void print(boolean bDetail) { 		
 		
 		
-		System.out.format("[주문아이디:%2d] ", orderId);
-		if (!isPaid)
+		System.out.format("[주문아이디:%2d] ", sellId);
+		if (isPaid)
 			System.out.printf(" (결재대기)");
 		System.out.println();
-		for (OrderedItem od: orderedItemList) {
-			System.out.print("\t");	
+		for (OrderedItem od: sellItemList) {
+			System.out.printf("\t");	
 			od.print();
 
 		}
@@ -91,9 +124,14 @@ public class Order implements Manageable, UIData {
 		// TODO Auto-generated method stub
 		String[] texts = new String[5];
 		texts[0] = ""+orderId;
-		texts[1] = ""+ID.userId;
+		texts[1] = ""+ID.id;
 		texts[2] = "1";
-		texts[3] = ""+item.deliveredOn;
+		texts[3] = ""+item;
 		return texts;
+	}
+	private int getSubtotal(int index) {
+		int SubtotalCal = orderedItemList.get(index).subTotal(itemCountList.get(index));
+		System.out.print(SubtotalCal);
+		return SubtotalCal;
 	}
 }

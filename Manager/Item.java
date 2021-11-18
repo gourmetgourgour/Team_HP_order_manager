@@ -11,7 +11,7 @@ import facade.UIData;
 public class Item implements Manageable, UIData {
     public String prCode;
 	public String prType;
-	public String prName;
+	public String  prName;
 	public int prPrice;
 	public int prStock;
 	public String prSize;
@@ -51,7 +51,7 @@ public class Item implements Manageable, UIData {
     }
     
     public boolean matches(String kwd) {
-        if (prName.contains(kwd))
+        if (prCode.contains(kwd))
             return true;
         if (kwd.length() > 2 && prCode.contains(kwd))
             return true;
@@ -90,5 +90,12 @@ public class Item implements Manageable, UIData {
 		texts[5] = ""+prColor;
 		texts[6] = ""+prDeliver;
 		return texts;
+	}
+	public int getSubtotal2(int index) {
+		// TODO Auto-generated method stub
+		int subtotal = 0;
+		subtotal = prPrice * index; 
+		
+		return subtotal;
 	}
 }

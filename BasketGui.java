@@ -2,15 +2,19 @@ package shoppingMall;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 public class BasketGui {
+		ActionListener Listener = new ButtonListener();
 		String header[] = {"제품명", "수량", "가격", "배송지"};
 		String contents[][] = {
 				{"아디다스져지", "100", "90000원", "경기대학교"},
@@ -32,7 +36,7 @@ public class BasketGui {
 				{"인텔컴퓨터", "20", "900000", "연세대학교"}
 		};
 		JButton clearBasket = new JButton("장바구니 비우기");
-		JButton paybutton = new JButton("결제하기");
+		JButton payButton = new JButton("결제하기");
 		JTable basketTable = new JTable(contents, header);
 		JScrollPane scrollPane =new JScrollPane(basketTable,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
 		ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -41,11 +45,26 @@ public class BasketGui {
 	void addBasket() {
 		basketTable.setPreferredSize(new Dimension(950,700));
 		scrollPane.setPreferredSize(new Dimension(1000,500));
-//		MainGUI.basketpanel.setBackground(Color.white);
+		clearBasket.addActionListener(Listener);
+		payButton.addActionListener(Listener);
 		MainGUI.basketpanel.setBounds(20, 30, 1000, 630);
 		MainGUI.basketpanel.add(scrollPane);
 		MainGUI.basketpanel.add(orderInfo);
 		MainGUI.basketpanel.add(clearBasket);
-		MainGUI.basketpanel.add(paybutton);
+		MainGUI.basketpanel.add(payButton);
 	}
+	
+
+	class ButtonListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String buttonName = e.getActionCommand();
+			if(buttonName.equals("결제하기")) {
+				JOptionPane.showMessageDialog(null, "결제하시겠습니까? 아직미완성ㅠ");
+			}
+			else if(buttonName.equals("장바구니 비우기"))
+				JOptionPane.showMessageDialog(null, "주문내역을 비울 기능, 미완성");
+			
+		}
+}
 }

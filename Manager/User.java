@@ -14,6 +14,7 @@ public class User implements Manageable{
     int address;   
     String phoneNum;
     boolean isAdmin;
+    ArrayList<Order> myOrderList = new ArrayList<>();
     
     static public ArrayList<Order> shoppingList = new ArrayList<>();
     static public ArrayList<Order> nowShoppingList = new ArrayList<>();
@@ -58,4 +59,11 @@ public class User implements Manageable{
               return true;
         return false;
     }
+
+void addOrder(Order od) {
+	myOrderList.add(od);
+	
+	}
+
 }
+

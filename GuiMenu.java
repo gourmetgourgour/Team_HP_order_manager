@@ -26,9 +26,9 @@ public class GuiMenu {
 		MainGUI.menuPanel.setBackground(Color.white);
 	}
 	void addLogo() {
-		ImageIcon logo = new ImageIcon("./images/bonobono.png");			//보노보노이미지 삽입
+		ImageIcon logo = new ImageIcon("./images/logo.png");			//보노보노이미지 삽입
 		Image img = logo.getImage();
-		Image changeImg= img.getScaledInstance(120,100, Image.SCALE_SMOOTH);
+		Image changeImg= img.getScaledInstance(150,110, Image.SCALE_SMOOTH);
 		ImageIcon logo2 = new ImageIcon(changeImg);
 		JButton logobutton = new JButton(logo2);
 		logobutton.setBorderPainted(false);

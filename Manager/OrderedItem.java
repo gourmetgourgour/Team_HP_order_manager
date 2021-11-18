@@ -21,7 +21,7 @@ public class OrderedItem implements Manageable, UIData {
 	}
 	public void print() {
 		System.out.format("[%s] %d원 x %d개 = %d원\n", 
-				item.prName, item.prPrice, order.sellItemList.size(), order.total);
+				item.prName, item.prPrice, order.sellItemList.size(), item.prPrice*order.sellItemList.size());
 	}
 	@Override
 	public void read(Scanner scan) {

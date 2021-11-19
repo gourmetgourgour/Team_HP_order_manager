@@ -21,7 +21,6 @@ public class Item implements Manageable, UIData {
 	public String primg;
 	public int prDeliver;
     
-
     public void read(Scanner scan) {
 
         prCode = scan.next();
@@ -97,5 +96,9 @@ public class Item implements Manageable, UIData {
 		subtotal = prPrice * index; 
 		
 		return subtotal;
+	}
+	
+	public String returnImgURL(String imgurl) {
+		return imgurl;
 	}
 }

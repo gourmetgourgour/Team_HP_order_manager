@@ -31,7 +31,7 @@ public class ItemMgr implements DataEngineInterface {
 	@Override
 	public List<Manageable> search(String kwd) {
 		// TODO Auto-generated method stub
-		return Store.itemMgr.findAll(kwd);
+		return Store2.itemMgr.findAll(kwd);
 	}
 	@Override
 	public void addNewItem(String[] uiTexts) {

@@ -28,7 +28,7 @@ public class UserMgr extends Manager implements DataEngineInterface{
 	@Override
 	public List<Manageable> search(String kwd) {
 		// TODO Auto-generated method stub
-		return Store.userMgr.findAll(kwd);
+		return Store2.userMgr.findAll(kwd);
 	}
 	@Override
 	public void addNewItem(String[] uiTexts) {

@@ -9,14 +9,14 @@ import javax.swing.*;
 
 
 public class GuiMenu {
-	String menus [] = {"¼îÇÎ", "ÁÖ¹®³»¿ª", "Àå¹Ù±¸´Ï", "·Î±×¾Æ¿ô",};
+	String menus [] = {"ì‡¼í•‘", "ì£¼ë¬¸ë‚´ì—­", "ìž¥ë°”êµ¬ë‹ˆ", "ë¡œê·¸ì•„ì›ƒ",};
 	void addMenu() {
 		ActionListener listener = new ButtonListener();
 		MainGUI.menuPanel.setLayout(new GridLayout(5,1,0,10));
 		MainGUI.menuPanel.setPreferredSize(new Dimension(150, 650));
 		addLogo();
 		for(int i=0;i<4;i++) {
-			String menuname = menus[i];										//¿ìÃø ¸Þ´º¹öÆ° Ãß°¡, »ö±òÀÌ¾È¹Ù²ñ;
+			String menuname = menus[i];										//ìš°ì¸¡ ë©”ë‰´ë²„íŠ¼ ì¶”ê°€, ìƒ‰ê¹”ì´ì•ˆë°”ë€œ;
 			JButton button = new JButton(menuname);
 			button.addActionListener(listener);
 			button.setBackground(Color.white);
@@ -26,7 +26,7 @@ public class GuiMenu {
 		MainGUI.menuPanel.setBackground(Color.white);
 	}
 	void addLogo() {
-		ImageIcon logo = new ImageIcon("./images/logo.png");			//º¸³ëº¸³ëÀÌ¹ÌÁö »ðÀÔ
+		ImageIcon logo = new ImageIcon("./images/logo.png");			//ë³´ë…¸ë³´ë…¸ì´ë¯¸ì§€ ì‚½ìž…
 		Image img = logo.getImage();
 		Image changeImg= img.getScaledInstance(150,110, Image.SCALE_SMOOTH);
 		ImageIcon logo2 = new ImageIcon(changeImg);
@@ -40,18 +40,18 @@ public class GuiMenu {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String buttonName = e.getActionCommand();
-			if(buttonName.equals("¼îÇÎ")) {
+			if(buttonName.equals("ì‡¼í•‘")) {
 				MainGUI.basketpanel.setVisible(false);
 				MainGUI.leftView.setVisible(true);
 			}
-			else if(buttonName.equals("ÁÖ¹®³»¿ª"))
-				JOptionPane.showMessageDialog(null, "ÁÖ¹®³»¿ª");
-			else if(buttonName.equals("Àå¹Ù±¸´Ï")) {
+			else if(buttonName.equals("ì£¼ë¬¸ë‚´ì—­"))
+				JOptionPane.showMessageDialog(null, "ì£¼ë¬¸ë‚´ì—­");
+			else if(buttonName.equals("ìž¥ë°”êµ¬ë‹ˆ")) {
 				MainGUI.leftView.setVisible(false);
 				MainGUI.basketpanel.setVisible(true);
 			}
-			else if(buttonName.equals("·Î±×¾Æ¿ô"))
-				JOptionPane.showMessageDialog(null, "·Î±×¾Æ¿ô");
+			else if(buttonName.equals("ë¡œê·¸ì•„ì›ƒ"))
+				JOptionPane.showMessageDialog(null, "ë¡œê·¸ì•„ì›ƒ");
 		}
 		
 	}

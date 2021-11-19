@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import store.Store2;
+
 public class MainGUI {
 	static JPanel menuPanel = new JPanel();
 	static JPanel products = new JPanel();
@@ -11,8 +13,7 @@ public class MainGUI {
 	static JFrame mainFrame = new JFrame("행복한 판매팀");
 	static Container mainPane = mainFrame.getContentPane();
 	static JPanel basketpanel = new JPanel();
-	
-	
+	static Store2 store = Store2.getInstance();
 	static void addComponentsToPane() {
 		GuiMenu guimenu = new GuiMenu();
 		GuiUppermenu upmenu = new GuiUppermenu();
@@ -36,6 +37,7 @@ public class MainGUI {
 		mainFrame.setVisible(true);
 	}
 	public static void main(String[] args) {
+		store.run();
 		MainGUI.createAndShowGUI();
 	}
 }

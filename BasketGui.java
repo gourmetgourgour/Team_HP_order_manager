@@ -15,36 +15,36 @@ import javax.swing.ScrollPaneConstants;
 
 public class BasketGui {
 		ActionListener Listener = new ButtonListener();
-		String header[] = {"Á¦Ç°¸í", "¼ö·®", "°¡°İ", "¹è¼ÛÁö"};
+		String header[] = {"ì œí’ˆëª…", "ìˆ˜ëŸ‰", "ê°€ê²©", "ë°°ì†¡ì§€"};
 		String contents[][] = {
-				{"¾Æµğ´Ù½ºÁ®Áö", "100", "90000", "°æ±â´ëÇĞ±³"},
-				{"»ï¼±½º·¹ºü", "50", "8000", "°æÈñ´ëÇĞ±³"},							//¿À´õ°¡ µé¾î¿À¸é Ãß°¡ÇÏ´Â ½ÄÀ¸·Î ÃßÈÄ ¾÷µ¥ÀÌÆ®.
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"¸®´ª½ºÄÄÇ»ÅÍ", "10", "2000000", "¼ö¿ø´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"},
-				{"ÀÎÅÚÄÄÇ»ÅÍ", "20", "900000", "¿¬¼¼´ëÇĞ±³"}
+				{"ì•„ë””ë‹¤ìŠ¤ì ¸ì§€", "100", "90000", "ê²½ê¸°ëŒ€í•™êµ"},
+				{"ì‚¼ì„ ìŠ¤ë ˆë¹ ", "50", "8000", "ê²½í¬ëŒ€í•™êµ"},							//ì˜¤ë”ê°€ ë“¤ì–´ì˜¤ë©´ ì¶”ê°€í•˜ëŠ” ì‹ìœ¼ë¡œ ì¶”í›„ ì—…ë°ì´íŠ¸.
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ë¦¬ëˆ…ìŠ¤ì»´í“¨í„°", "10", "2000000", "ìˆ˜ì›ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"},
+				{"ì¸í…”ì»´í“¨í„°", "20", "900000", "ì—°ì„¸ëŒ€í•™êµ"}
 		};
-		JButton clearBasket = new JButton("Àå¹Ù±¸´Ï ºñ¿ì±â");
-		JButton payButton = new JButton("°áÁ¦ÇÏ±â");
+		JButton clearBasket = new JButton("ì¥ë°”êµ¬ë‹ˆ ë¹„ìš°ê¸°");
+		JButton payButton = new JButton("ê²°ì œí•˜ê¸°");
 		JTable basketTable = new JTable(contents, header);
 		JScrollPane scrollPane =new JScrollPane(basketTable,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
 		ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		JTextField orderInfo = new JTextField("¹è¼Û¿¹Á¤ÀÏ: 2021/11/30, ÃÑ °¡°İ: 99000");
+		JTextField orderInfo = new JTextField("ë°°ì†¡ì˜ˆì •ì¼: 2021/11/30, ì´ ê°€ê²©: 99000");
 		
 	void addBasket() {
 		basketTable.setPreferredSize(new Dimension(950,700));
-		basketTable.getColumnModel().getColumn(0).setPreferredWidth(40);  //JTable ÀÇ ÄÃ·³ ±æÀÌ Á¶Àı
+		basketTable.getColumnModel().getColumn(0).setPreferredWidth(40);  //JTable ì˜ ì»¬ëŸ¼ ê¸¸ì´ ì¡°ì ˆ
 		basketTable.getColumnModel().getColumn(1).setPreferredWidth(20);
 		basketTable.getColumnModel().getColumn(2).setPreferredWidth(100);
 		basketTable.getColumnModel().getColumn(3).setPreferredWidth(200);
@@ -64,11 +64,11 @@ public class BasketGui {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String buttonName = e.getActionCommand();
-			if(buttonName.equals("°áÁ¦ÇÏ±â")) {
-				JOptionPane.showMessageDialog(null, "°áÁ¦ÇÏ½Ã°Ú½À´Ï±î? ¾ÆÁ÷¹Ì¿Ï¼º¤Ğ");
+			if(buttonName.equals("ê²°ì œí•˜ê¸°")) {
+				JOptionPane.showMessageDialog(null, "ê²°ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ? ì•„ì§ë¯¸ì™„ì„±ã… ");
 			}
-			else if(buttonName.equals("Àå¹Ù±¸´Ï ºñ¿ì±â"))
-				JOptionPane.showMessageDialog(null, "ÁÖ¹®³»¿ªÀ» ºñ¿ï ±â´É, ¹Ì¿Ï¼º");
+			else if(buttonName.equals("ì¥ë°”êµ¬ë‹ˆ ë¹„ìš°ê¸°"))
+				JOptionPane.showMessageDialog(null, "ì£¼ë¬¸ë‚´ì—­ì„ ë¹„ìš¸ ê¸°ëŠ¥, ë¯¸ì™„ì„±");
 			
 		}
 }

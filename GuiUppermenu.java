@@ -6,7 +6,7 @@ public class GuiUppermenu {
 	    JPanel upperMenu = new JPanel();
 		JLabel sortMenuLabel = new JLabel();
 		JLabel selectedSort = new JLabel();
-		String sortMenus[] = {"¿Ê Á¾·ù", "»ö»ó", "»çÀÌÁî", "¼ÒÀç", "ºü¸¥ ¹è¼Û", "ÃÖ½Å¼ø"};
+		String sortMenus[] = {"ì˜· ì¢…ë¥˜", "ìƒ‰ìƒ", "ì‚¬ì´ì¦ˆ", "ì†Œì¬", "ë¹ ë¥¸ ë°°ì†¡", "ìµœì‹ ìˆœ"};
 		String menuColor[] = {"Color.red", "Color.magenta", "Color.green", "Color.blue", "Color.cyan", "Color.orange"};
 	void addMenu() {
 		upperMenu.setPreferredSize(new Dimension(1050,130));
@@ -16,7 +16,7 @@ public class GuiUppermenu {
 		for(int i=0; i<sortMenus.length; i++) {
 			JButton button = new JButton(sortMenus[i]);
 			sortMenuLabel.add(button);
-			int xcode = 10;										//¹öÆ°ÀÇ Àı´ëÀ§Ä¡ Á¤ÇÏ±â
+			int xcode = 10;										//ë²„íŠ¼ì˜ ì ˆëŒ€ìœ„ì¹˜ ì •í•˜ê¸°
 			xcode += i*(165);
 			button.setBounds(xcode, 5, 150, 50);
 			button.setBackground(Color.white);
@@ -43,10 +43,10 @@ public class GuiUppermenu {
 		
 		selectedSort.setPreferredSize(new Dimension(1000, 130));
 		selectedSort.setLayout(null);
-		JButton reset = new JButton("ÃÊ±âÈ­");
+		JButton reset = new JButton("ì´ˆê¸°í™”");
 		
 		for(int i=0;i<sortMenus.length; i++) {
-			int xcode = 70;										//¹öÆ°ÀÇ Àı´ëÀ§Ä¡ Á¤ÇÏ±â
+			int xcode = 70;										//ë²„íŠ¼ì˜ ì ˆëŒ€ìœ„ì¹˜ ì •í•˜ê¸°
 			xcode += i*(140);
 
 			JLabel sortLabel = new JLabel("["+sortMenus[i]+"] :");

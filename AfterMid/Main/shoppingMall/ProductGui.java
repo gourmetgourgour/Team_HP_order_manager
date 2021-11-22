@@ -62,7 +62,7 @@ public class ProductGui {
 		productInfo.add(BorderLayout.NORTH,product);
 		JTextArea info = new JTextArea(
 				"\n배송예정일 : " + arrivalDate + "\n\n" +
-				"오늘날짜 : "+ curDate + "가격: " + Integer.toString(item.prPrice) +"\n\n" +
+				"가격: " + Integer.toString(item.prPrice) +"\n\n" +
 				"사이즈:" + item.prSize + "\n\n" +
 				"소재 :" + item.prType + "\n\n" +
 				"색상 :" + item.prColor);

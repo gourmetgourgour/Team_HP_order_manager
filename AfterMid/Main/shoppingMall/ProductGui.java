@@ -74,7 +74,7 @@ public class ProductGui {
 		
 		//오른쪽화면, 제품설명과 수량정하기, 장바구니에 추가까지
 		JPanel addtoBasket = new JPanel();
-//		addtoBasket.setBackground(Color.white);
+		addtoBasket.setBackground(Color.white);
 		addtoBasket.setPreferredSize(new Dimension(450, 580));
 		JTextField productName = new JTextField(item.prName);
 		productName.setFont(font);

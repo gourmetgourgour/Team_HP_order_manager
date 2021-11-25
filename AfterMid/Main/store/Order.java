@@ -1,19 +1,27 @@
 package store;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import mgr.Factory;
 import mgr.Manageable;
 
 public class Order implements Manageable {
-	int orderId;
+	 int orderId;
 	User user;
-	String address;
-	String orderDate;
-	String deliveryDate;
-	String phonenumber;
+	 String address;
+	 String orderDate;
+	 String deliveryDate;
+	 String phonenumber;
 	int total;
-	ArrayList<Item> orderedItemList = new ArrayList<>();
-	ArrayList<Integer> orderedItemCount = new ArrayList<>();
+	 ArrayList<Item> orderedItemList = new ArrayList<>();
+	 ArrayList<Integer> orderedItemCount = new ArrayList<>();
 	
 	public void read(Scanner scan) { 
 		orderId = scan.nextInt();
@@ -69,14 +77,73 @@ public class Order implements Manageable {
 	}
 	
 	void print(boolean bDetail) {
-		System.out.printf("[Ï£ºÎ¨∏?ïÑ?ù¥?îî:%2d] Ï£ºÎ¨∏?Ç†Ïß? : %s Î∞∞ÏÜ°?òà?†ï?ùº :  %s ?Ç¨?ö©?ûê: %s "
+		System.out.printf("[Ï£ºÎ¨∏ÏïÑÏù¥Îîî:%2d] Ï£ºÎ¨∏ÎÇ†Ïßú : %s Î∞∞ÏÜ°ÏòàÏ†ïÏùº :  %s ÏÇ¨Ïö©Ïûê: %s "
 				, orderId, orderDate, deliveryDate, user.userId);
 		System.out.printf(" - Ï£ºÎ¨∏Í∏àÏï°:%5d\n", total);
 		if (!bDetail)
 			return;
 		for (int i = 0; i < orderedItemList.size(); i++) {
-			System.out.printf("\t(%2dÍ∞?)", orderedItemCount.get(i));
+			System.out.printf("\t(%2dÍ∞ú)", orderedItemCount.get(i));
 			orderedItemList.get(i).print();
 		}
 	}
+	public void orderCreate(User user) {
+		orderId = store.User.myOrderList.size()+1001;
+		address = user.address;
+		LocalDate alpha = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyymmdd");
+		String formattedString = alpha.format(formatter);
+		orderDate = formattedString;
+		orderedItemList = (ArrayList<Item>) user.myShoppingCart.clone();
+		orderedItemCount = (ArrayList<Integer>) user.myShoppingCart.clone();
+		int beta = Integer.parseInt(orderDate);
+		int gamma = beta + Cart.cartInDeliver;
+		
+		deliveryDate = Integer.toString(gamma); 
+		phonenumber = user.phoneNum;
+		user.addOrder(this);
+		fileUpdate();
+	}
+	public void fileUpdate(){
+		Store.itemMgr.writeAll("products2.txt", new Factory<Item>() {
+			public Item create() {
+				return new Item();
+			}
+		});
+		Store.orderMgr.writeAll("order2.txt", new Factory<Order>() {
+			public Order create() {
+				return new Order();
+			}
+		});
+				
+	}
+/*
+	@Override
+	public void write(String filename) {
+		 File file = new File(filename);
+		 
+		 FileWriter writer = new FileWriter(filename); 
+		 for(String m: arr) {
+		   writer.write(str + System.lineSeparator());
+		 }
+		 
+		 String alpha = 
+		 String output = System.out.println(alpha+beta+gamma++"e"+delta+) 
+		 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+		// TODO Auto-generated method stub
+		try {
+			if(file.isFile() && file.canWrite()){
+                //Ïì∞Í∏∞
+                bufferedWriter.write(output);
+                //Í∞úÌñâÎ¨∏ÏûêÏì∞Í∏∞
+                bufferedWriter.newLine();                
+                bufferedWriter.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	};
+	} */
+	
 }

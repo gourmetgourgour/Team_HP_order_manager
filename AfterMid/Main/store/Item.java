@@ -3,6 +3,7 @@ package store;
 import mgr.Manageable;
 import java.util.Scanner;
 
+
 public class Item implements Manageable {
     String prCode;
     String prType;
@@ -15,19 +16,31 @@ public class Item implements Manageable {
 	String prDesc;
 	String primg;
 	int prDeliver;
+	int prDeliver2;
     
     public void read(Scanner scan) {
         prCode = scan.next();
+        System.out.print(prCode);
         prType = scan.next();
+        System.out.print(prType);
         prName = scan.next();
+        System.out.print(prName);
         prPrice = scan.nextInt();
+        System.out.print(prPrice);
         prStock = scan.nextInt();
+        System.out.print(prStock);
         prSize = scan.next();
+        System.out.print(prSize);
         prMeta = scan.next();
+        System.out.print(prMeta);
         prColor = scan.next();
+        System.out.print(prColor);
         prDesc = scan.next();
+        System.out.print(prDesc);
         primg = scan.next();
+        System.out.print(primg);
         prDeliver = scan.nextInt();
+        System.out.println(prDeliver);
     }
     
     public void print() { // Item
@@ -55,4 +68,7 @@ public class Item implements Manageable {
 	int getSubtotal(int count) {
 		return prPrice * count;
 	}
+
+
+
 }

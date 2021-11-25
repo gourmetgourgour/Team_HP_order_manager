@@ -13,7 +13,7 @@ public class Menu {
 			System.out.print("pwd : ");
 			String pwd = scan.next();
 			
-			//?–´?“œë¯¼ì¸ì§? ?™•?¸ -> ?–´?“œë¯¼ì´ë©? ?–´?“œë¯? ë©”ë‰´ë¡?
+			//ì–´ë“œë¯¼ì¸ì§€ í™•ì¸ -> ì–´ë“œë¯¼ì´ë©´ ì–´ë“œë¯¼ ë©”ë‰´ë¡œ
 			admin = Store.adminMgr.find(id);
 			if(admin != null) {
 				if(admin.passwordMatch(pwd)) {
@@ -22,7 +22,7 @@ public class Menu {
 				}
 			}
 			
-			//?œ ???¸ì§? ?™•?¸ -> ?œ ??ë©? ?œ ??ë©”ë‰´ë¡?
+			//ìœ ì €ì¸ì§€ í™•ì¸ -> ìœ ì €ë©´ ìœ ì €ë©”ë‰´ë¡œ
 			user = Store.userMgr.find(id);
 			if(user != null) {
 				if(user.passwordMatch(pwd)) {
@@ -30,8 +30,8 @@ public class Menu {
 					continue;
 				}
 			}
-			//?•„ë¬´ê²ƒ?„ ?•„?‹ˆ?¼ë©? ê³„ì† ë°˜ë³µë¬? ?Œê²?...
-			System.out.println("id?? pwdë¥? ?‹¤?‹œ ?™•?¸?•´ì£¼ì„¸?š”.");
+			//ì•„ë¬´ê²ƒë„ ì•„ë‹ˆë¼ë©´ ê³„ì† ë°˜ë³µë¬¸ ëŒê²Œ...
+			System.out.println("idì™€ pwdë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.");
 			flushLoginBuffer();
 		}
 						
@@ -40,7 +40,7 @@ public class Menu {
 	void UserMenu(Scanner scan) {
 		int num;
 		while(user != null) {
-			System.out.print("(0) ë¡œê·¸?•„?›ƒ ");
+			System.out.print("(0) ë¡œê·¸ì•„ì›ƒ ");
 			num = scan.nextInt();
 			switch(num) {
 			case 0:
@@ -54,7 +54,7 @@ public class Menu {
 	void AdminMenu(Scanner scan) {
 		int num;
 		while(admin != null) {
-			System.out.print("(1)ë¬¼í’ˆì¶œë ¥ (2)?‚¬?š©?ì¶œë ¥ (3)ì£¼ë¬¸ì¶œë ¥ (4)ê²??ƒ‰ (0)ë¡œê·¸?•„?›ƒ ");
+			System.out.print("(1)ë¬¼í’ˆì¶œë ¥ (2)ì‚¬ìš©ìì¶œë ¥ (3)ì£¼ë¬¸ì¶œë ¥ (4)ê²€ìƒ‰ (0)ë¡œê·¸ì•„ì›ƒ ");
 			num = scan.nextInt();
 			switch(num) {
 			case 0:
@@ -72,7 +72,7 @@ public class Menu {
 	void searchMenu(Scanner scan) {
 		int num;
 		while (true) {
-			System.out.print("(1)ë¬¼í’ˆê²??ƒ‰ (2)?‚¬?š©?ê²??ƒ‰ (3)ì£¼ë¬¸ê²??ƒ‰ (ê¸°í?) ì¢…ë£Œ ");
+			System.out.print("(1)ë¬¼í’ˆê²€ìƒ‰ (2)ì‚¬ìš©ìê²€ìƒ‰ (3)ì£¼ë¬¸ê²€ìƒ‰ (ê¸°íƒ€) ì¢…ë£Œ ");
 			num = scan.nextInt();
 			if (num < 1 || num > 3) break;
 			switch(num) {

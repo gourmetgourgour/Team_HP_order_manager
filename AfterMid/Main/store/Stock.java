@@ -45,7 +45,8 @@ public class Stock implements Manageable{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public void stockChange(String kwd) {
+	
+	static public void stockChange(String kwd) {
 		int alpha; 
 		Item item = null;
 		item = (Item)Store.itemMgr.find(kwd);

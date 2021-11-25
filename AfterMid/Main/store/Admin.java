@@ -28,6 +28,5 @@ public class Admin implements Manageable {
 			return true;
 		return false;
 	}
-
-
 }
+

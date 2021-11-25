@@ -10,7 +10,8 @@ public class User implements Manageable{
     String pwd;
     String address;   
     String phoneNum;
-    ArrayList<Order> myOrderList = new ArrayList<>();
+    static ArrayList<Order> myOrderList = new ArrayList<>();
+    ArrayList<Cart> myShoppingCart = new ArrayList<>();
     
     @Override
     public void read(Scanner scan) {
@@ -44,6 +45,7 @@ public class User implements Manageable{
 			return true;
 		return false;
 	}
-	
+
+
 }
 

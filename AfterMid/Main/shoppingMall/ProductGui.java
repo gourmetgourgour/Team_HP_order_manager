@@ -1,127 +1,93 @@
 package shoppingMall;
+
 import java.awt.*;
-import java.awt.event.*;
-import java.time.LocalDate;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
 import javax.swing.*;
-import facade.DataEngineInterface;
-import mgr.*;
-import store.*;
 
 public class ProductGui {
-	LocalDate curDate = LocalDate.now();
-	Font font = new Font("Serif",Font.PLAIN, 20);
-	
-	JPanel productPanel = new JPanel();
-	JScrollPane scroll = new JScrollPane(productPanel, 
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	JFrame productInfoframe = new JFrame("êµ¬ë§¤");
-	
-	String imgnum;
-	LocalDate arrivalDate;
-	void addproduct() {	
-		productPanel.setPreferredSize(new Dimension(1000,7000));
-		productPanel.setLayout(new GridLayout(25,4, 20, 20));
-		for(int i=0; i<100; i++) {
+	ArrayList<String> items = new ArrayList<>();
+	ArrayList<String> names = new ArrayList<>();
 
-			Manageable m = Store.itemMgr.mList.get(i);
-			Item itm = (Item)m;
-			imgnum = itm.primg;
-			ImageIcon productimg =getImg(imgnum, 150);
-			
-			JButton product = new JButton(productimg);
-			
-			product.addActionListener(new ActionListener(){
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-						 productInfo(itm);
-				}
-			});
-			product.setBackground(Color.white);
-			productPanel.add(product);
+	JPanel productPanel = new JPanel();
+	JScrollPane scroll = new JScrollPane(productPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+			ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+	// 1. products.txt ÆÄÀÏÀ» ¸ğµÎ ÅÇÀ¸·Î ºĞ¸®ÇØ¼­ arr¿¡ ÀúÀå
+	// 2. arrÀÇ 2¹øÂ°, 13¹øÂ°, 24¹øÂ° ... getÇØ¼­ names¿¡ ÀúÀå
+	public String[] readProduct() throws IOException {
+		File file = new File("products.txt");
+		String[] splitstr = null;
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "euc-kr"));
+		String line = null;
+		splitstr = null;
+		while ((line = br.readLine()) != null) {
+			splitstr = null;
+			splitstr = line.split("\t");
+
+			for (int i = 0; i < splitstr.length; i++) {
+				splitstr[i] = splitstr[i].trim();
+			}
 		}
-		
+		System.out.println(splitstr);
+		return splitstr;
+	}
+
+	public ArrayList<String> getName(String[] splitstr) {
+		ArrayList<String> names = new ArrayList<>();
+		for (int i = 2; i < splitstr.length; i += 11) {
+			String name = splitstr[i];
+			names.add(name);
+		}
+		return names;
+	}
+	
+	public ArrayList<String> getPrice(String[] splitstr) {
+		ArrayList<String> prices = new ArrayList<>();
+		for(int i=3;i<splitstr.length;i+=11) {
+			String price = splitstr[i];
+			prices.add(price);
+		}
+		return prices;
+	}
+
+	void addproduct() throws IOException {
+		productPanel.setPreferredSize(new Dimension(1000, 1000));
+		productPanel.setLayout(new GridLayout(0, 5, 3, 3)); // row, col, hgap, vgap
+
+		for (int i = 0; i < 12; i++) { // ¹Ù²Ù±â
+			String imgnum = Integer.toString(i + 1);
+			ImageIcon pruductImg = new ImageIcon(imgnum + ".jpg");
+			Image img = pruductImg.getImage();
+			Image changeImg = img.getScaledInstance(180, 180, Image.SCALE_SMOOTH);
+			ImageIcon productimg = new ImageIcon(changeImg);
+
+			JLabel product = new JLabel(productimg);
+			String[] splitstr = readProduct();
+			ArrayList<String> name = getName(splitstr);
+			// String name = new String("À½¸Ş");
+			String price = new String("3000"); // ÀÌ ºÎºĞ ¼öÁ¤
+
+			JButton b = new JButton(name + " " + price + "¿ø", productimg);
+			b.setHorizontalTextPosition(SwingConstants.CENTER);
+			b.setVerticalTextPosition(SwingConstants.BOTTOM);
+			b.setBorderPainted(false);
+			b.setFocusPainted(false);
+			product.setBackground(Color.white);
+			b.setBackground(Color.WHITE);
+
+			productPanel.add(b);
+		}
+
 		scroll.setPreferredSize(new Dimension(1000, 550));
 		MainGUI.leftView.add(scroll);
-		
+
 	}
-	
-	
-	void productInfo(Item item) {
-		productInfoframe.setSize(800, 600);
-		//ì™¼ìª½í™”ë©´, ì‚¬ì§„ ë° ë°°ì†¡ì˜ˆì •ì¼ë¶€í„° ìƒ‰ìƒê¹Œì§€ë¥¼ ë‹´ì€ panel
-		ImageIcon productimg = getImg(item.primg, 300);
-		JButton product = new JButton(productimg);
-		arrivalDate = curDate.plusDays(item.prDeliver);
-		
-		JPanel productInfo = new JPanel();
-		productInfo.setBackground(Color.white);
-		productInfo.setPreferredSize(new Dimension(350, 580));
-		productInfo.add(BorderLayout.NORTH,product);
-		JTextArea info = new JTextArea(
-				"\në°°ì†¡ì˜ˆì •ì¼ : " + arrivalDate + "\n\n" +
-				"ê°€ê²©: " + Integer.toString(item.prPrice) +"\n\n" +
-				"ì‚¬ì´ì¦ˆ:" + item.prSize + "\n\n" +
-				"ì†Œì¬ :" + item.prType + "\n\n" +
-				"ìƒ‰ìƒ :" + item.prColor);
-		info.setPreferredSize(new Dimension(300, 250));
-		info.setFont(font);
-		productInfo.add(BorderLayout.SOUTH,info);
-		productInfoframe.add(BorderLayout.LINE_START,productInfo);
-		
-		
-		//ì˜¤ë¥¸ìª½í™”ë©´, ì œí’ˆì„¤ëª…ê³¼ ìˆ˜ëŸ‰ì •í•˜ê¸°, ì¥ë°”êµ¬ë‹ˆì— ì¶”ê°€ê¹Œì§€
-		JPanel addtoBasket = new JPanel();
-		addtoBasket.setBackground(Color.white);
-		addtoBasket.setPreferredSize(new Dimension(450, 580));
-		JTextField productName = new JTextField(item.prName);
-		productName.setFont(font);
-		JTextArea productDesc = new JTextArea("-------------------------------------------------------------\n\n\n"+item.prDesc+"\n\n\n-------------------------------------------------------------");
-		productDesc.setLineWrap(true);
-		productName.setPreferredSize(new Dimension(440, 150));
-		productDesc.setFont(font);
-		productDesc.setPreferredSize(new Dimension(440, 200));
-		
-		int count = 1;
-		JLabel productUpdown = new JLabel();
-		productUpdown.setPreferredSize(new Dimension(440, 200));
-		JTextArea productCount = new JTextArea("\nìˆ˜ëŸ‰ : \t[" + count + "]");
-		productCount.setPreferredSize(new Dimension(240, 50));
-		productCount.setFont(font);
-		JButton up = new JButton("UP");
-		JButton down = new JButton("DOWN");
-		JButton addBasket = new JButton("ì¥ë°”êµ¬ë‹ˆì— ì¶”ê°€");
-		up.setPreferredSize(new Dimension(60,40));
-		down.setPreferredSize(new Dimension(60, 40));
-		up.setBackground(Color.white);
-		down.setBackground(Color.white);
-		addBasket.setBackground(Color.black);
-		productUpdown.add(BorderLayout.LINE_START,productCount);
-		productUpdown.add(up);
-		productUpdown.add(down);
-		
-		
-		
-		addtoBasket.add(productName);
-		addtoBasket.add(productDesc);
-		addtoBasket.add(productCount);
-		addtoBasket.add(productUpdown);
-		
-		
-		productInfoframe.add(BorderLayout.LINE_END,addtoBasket);
-		productInfoframe.add(addBasket);
-		addBasket.setBounds(500,440,300,150);
-		productInfoframe.setVisible(true);
-	}
-	
-	
-	ImageIcon getImg(String imgnum, int num) {
-		ImageIcon pruductImg = new ImageIcon("./images/"+imgnum);
-		Image img = pruductImg.getImage();
-		Image changeImg= img.getScaledInstance(num,num, Image.SCALE_SMOOTH);	
-		ImageIcon productimg = new ImageIcon(changeImg);
-		return productimg;
-	}
+
 }

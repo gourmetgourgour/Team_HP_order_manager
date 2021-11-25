@@ -1,8 +1,12 @@
 package mgr;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class Manager<T extends Manageable> {
 	public ArrayList<T> mList = new ArrayList<>();
@@ -30,7 +34,7 @@ public class Manager<T extends Manageable> {
 		try {
 			filein = new Scanner(new File(filename));
 		} catch (Exception e) {
-			System.out.println(filename + ": ?ŒŒ?¼ ?—†?Œ");
+			System.out.println(filename + ": ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½");
 			System.exit(0);
 		}
 		return filein;
@@ -53,5 +57,22 @@ public class Manager<T extends Manageable> {
 					m.print();
 			}
 		}
+	}
+
+	public void writeAll(String filename, Factory<T> fac) {
+		FileWriter writer;
+		try {
+			writer = new FileWriter(filename);
+			for(T m: mList) {
+				writer.write(m + System.lineSeparator());
+			   
+			}
+			 writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		 
 	}
 }

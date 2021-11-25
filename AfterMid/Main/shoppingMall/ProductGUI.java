@@ -1,98 +1,93 @@
 package shoppingMall;
+
 import java.awt.*;
-import java.awt.event.*;
-import java.time.LocalDate;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
 import javax.swing.*;
-import facade.DataEngineInterface;
-import mgr.*;
-import store.*;
+
 public class ProductGui {
-	LocalDate curDate = LocalDate.now();
-	Font font = new Font("Serif",Font.PLAIN, 20);
-	
+	ArrayList<String> items = new ArrayList<>();
+	ArrayList<String> names = new ArrayList<>();
+
 	JPanel productPanel = new JPanel();
-	JScrollPane scroll = new JScrollPane(productPanel, 
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	JFrame productInfoframe = new JFrame("구매");
-	
-	String imgnum;
-	LocalDate arrivalDate;
-	void addproduct() {	
-		productPanel.setPreferredSize(new Dimension(1000,7000));
-		productPanel.setLayout(new GridLayout(25,4, 20, 20));
-		for(int i=0; i<100; i++) {
-			Manageable m = Store.itemMgr.mList.get(i);
-			Item itm = (Item)m;
-			imgnum = itm.primg;
-			ImageIcon productimg =getImg(imgnum, 150);
-			
-			JButton product = new JButton(productimg);
-			
-			product.addActionListener(new ActionListener(){
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-						 productInfo(itm);
-				}
-			});
-			product.setBackground(Color.white);
-			productPanel.add(product);
+	JScrollPane scroll = new JScrollPane(productPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+			ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+	// 1. products.txt 파일을 모두 탭으로 분리해서 arr에 저장
+	// 2. arr의 2번째, 13번째, 24번째 ... get해서 names에 저장
+	public String[] readProduct() throws IOException {
+		File file = new File("products.txt");
+		String[] splitstr = null;
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "euc-kr"));
+		String line = null;
+		splitstr = null;
+		while ((line = br.readLine()) != null) {
+			splitstr = null;
+			splitstr = line.split("\t");
+
+			for (int i = 0; i < splitstr.length; i++) {
+				splitstr[i] = splitstr[i].trim();
+			}
 		}
-		
-		scroll.setPreferredSize(new Dimension(1000, 550));
-		MainGUI.leftView.add(scroll);
-		
+		System.out.println(splitstr);
+		return splitstr;
+	}
+
+	public ArrayList<String> getName(String[] splitstr) {
+		ArrayList<String> names = new ArrayList<>();
+		for (int i = 2; i < splitstr.length; i += 11) {
+			String name = splitstr[i];
+			names.add(name);
+		}
+		return names;
 	}
 	
-	
-	void productInfo(Item item) {
-		productInfoframe.setSize(800, 600);
-		//왼쪽화면, 사진 및 배송예정일부터 색상까지를 담은 panel
-		ImageIcon productimg = getImg(item.primg, 300);
-		JButton product = new JButton(productimg);
-		arrivalDate = curDate.plusDays(item.prDeliver);
-		
-		JPanel productInfo = new JPanel();
-		productInfo.setBackground(Color.white);
-		productInfo.setPreferredSize(new Dimension(350, 580));
-		productInfo.add(BorderLayout.NORTH,product);
-		JTextArea info = new JTextArea(
-				"\n배송예정일 : " + arrivalDate + "\n\n" +
-				"가격: " + Integer.toString(item.prPrice) +"\n\n" +
-				"사이즈:" + item.prSize + "\n\n" +
-				"소재 :" + item.prType + "\n\n" +
-				"색상 :" + item.prColor);
-		info.setPreferredSize(new Dimension(300, 250));
-		info.setFont(font);
-		productInfo.add(BorderLayout.SOUTH,info);
-		productInfoframe.add(BorderLayout.LINE_START,productInfo);
-		
+	public ArrayList<String> getPrice(String[] splitstr) {
+		ArrayList<String> prices = new ArrayList<>();
+		for(int i=3;i<splitstr.length;i+=11) {
+			String price = splitstr[i];
+			prices.add(price);
+		}
+		return prices;
+	}
 
-		//오른쪽화면, 제품설명과 수량정하기, 장바구니에 추가까지
-		JPanel addtoBasket = new JPanel();
-//		addtoBasket.setBackground(Color.white);
-		addtoBasket.setPreferredSize(new Dimension(450, 580));
-		JTextField productName = new JTextField(item.prName);
-		productName.setFont(font);
-		JTextArea productDesc = new JTextArea("-------------------------------------------------------------\n\n\n"+item.prDesc+"\n\n\n-------------------------------------------------------------");
-		productDesc.setLineWrap(true);
-		productName.setPreferredSize(new Dimension(440, 150));
-		productDesc.setFont(font);
-		productDesc.setPreferredSize(new Dimension(440, 200));
-		
-		int count = 1;
-		JLabel productUpdown = new JLabel();
-		productUpdown.setPreferredSize(new Dimension(440, 200));
-		JTextArea productCount = new JTextArea("\n수량 : \t[" + count + "]");
-		productCount.setPreferredSize(new Dimension(240, 50));
-		productCount.setFont(font);
-		JButton up = new JButton("UP");
-		JButton down = new JButton("DOWN");
-		JButton addBasket = new JButton("장바구니에 추가");
-		up.setPreferredSize(new Dimension(60,40));
-		down.setPreferredSize(new Dimension(60, 40));
-		up.setBackground(Color.white);
-		down.setBackground(Color.white);
-		addBasket.setBackground(Color.black);
+	void addproduct() throws IOException {
+		productPanel.setPreferredSize(new Dimension(1000, 1000));
+		productPanel.setLayout(new GridLayout(0, 5, 3, 3)); // row, col, hgap, vgap
+
+		for (int i = 0; i < 12; i++) { // 바꾸기
+			String imgnum = Integer.toString(i + 1);
+			ImageIcon pruductImg = new ImageIcon(imgnum + ".jpg");
+			Image img = pruductImg.getImage();
+			Image changeImg = img.getScaledInstance(180, 180, Image.SCALE_SMOOTH);
+			ImageIcon productimg = new ImageIcon(changeImg);
+
+			JLabel product = new JLabel(productimg);
+			String[] splitstr = readProduct();
+			ArrayList<String> name = getName(splitstr);
+			// String name = new String("음메");
+			String price = new String("3000"); // 이 부분 수정
+
+			JButton b = new JButton(name + " " + price + "원", productimg);
+			b.setHorizontalTextPosition(SwingConstants.CENTER);
+			b.setVerticalTextPosition(SwingConstants.BOTTOM);
+			b.setBorderPainted(false);
+			b.setFocusPainted(false);
+			product.setBackground(Color.white);
+			b.setBackground(Color.WHITE);
+
+			productPanel.add(b);
+		}
+
+		scroll.setPreferredSize(new Dimension(1000, 550));
+		MainGUI.leftView.add(scroll);
+
+	}
+
+}

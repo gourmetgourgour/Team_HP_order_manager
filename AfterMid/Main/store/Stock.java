@@ -1,82 +1,60 @@
 package store;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 import mgr.Manageable;
 
-public class Order implements Manageable {
-	int orderId;
-	User user;
-	String address;
-	String orderDate;
-	String deliveryDate;
-	String phonenumber;
-	int total;
-	ArrayList<Item> orderedItemList = new ArrayList<>();
-	ArrayList<Integer> orderedItemCount = new ArrayList<>();
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+public class Stock implements Manageable{
+	String prCode2;
+	int newStock;
+	String tempDate;
+	LocalDate StockDate;
+	LocalDate testDate;
+	int periodDate;
 	
-	public void read(Scanner scan) { 
-		orderId = scan.nextInt();
-		address = scan.next();
-		String itemId = scan.next();
-		Item item = null;
-		while(!itemId.contentEquals("e")) {
-			item = (Item)Store.itemMgr.find(itemId);
-			if(item == null) {
-				System.out.printf("ItemId Error: %s",  itemId);
-				continue;
-			}
-			orderedItemList.add(item);
-			orderedItemCount.add(scan.nextInt());
-			itemId = scan.next();
-		}
-		calcTotal();
-		String userId = scan.next();
-		user = (User)Store.userMgr.find(userId);
-		phonenumber = scan.next();
-		orderDate = scan.next();
-		deliveryDate = scan.next();
-		user.addOrder(this);
-	}
+	ArrayList<Stock> stockChangeList = new ArrayList<>();
 	
-	void calcTotal() {
-		for(int i = 0; i < orderedItemList.size() ; i++) {
-			total += orderedItemList.get(i).getSubtotal(orderedItemCount.get(i));
-		}
-	}
-	
-	public boolean matches(String kwd) {
-		if (user.userId.equals(kwd))
-		    return true;
-		if(orderDate.contentEquals(kwd))
-			return true;
-		for (Item item: orderedItemList)
-			if (item.matches(kwd))
-				return true;
-		return false;
-    }
-	
-	public boolean matches(String[] kwdArr) {
-		for (String kwd: kwdArr) {
-			if (!matches(kwd))
-				return false;
-		}
-		return true;
-	}
-	
+	 public void read(Scanner scan) {
+	     testDate = LocalDate.now();
+		 prCode2 = scan.next();
+	     newStock = scan.nextInt();
+	     tempDate = scan.next();
+	     StockDate = LocalDate.parse(tempDate); 
+	    
+	     periodDate = (int) ChronoUnit.DAYS.between(testDate,StockDate);
+	        System.out.print(periodDate);
+	        
+	    Item item = null;
+		item = (Item)Store.itemMgr.find(prCode2);
+		item.prDeliver2 = periodDate;
+		
+		stockChangeList.add(this);
+	    }
+
+	@Override
 	public void print() {
-		print(false);
+		// TODO Auto-generated method stub
+		
 	}
-	
-	void print(boolean bDetail) {
-		System.out.printf("[주문아이디:%2d] 주문날짜 : %s 배송예정일 :  %s 사용자: %s "
-				, orderId, orderDate, deliveryDate, user.userId);
-		System.out.printf(" - 주문금액:%5d\n", total);
-		if (!bDetail)
-			return;
-		for (int i = 0; i < orderedItemList.size(); i++) {
-			System.out.printf("\t(%2d개)", orderedItemCount.get(i));
-			orderedItemList.get(i).print();
-		}
+
+	@Override
+	public boolean matches(String kwd) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public void stockChange(String kwd) {
+		int alpha; 
+		Item item = null;
+		item = (Item)Store.itemMgr.find(kwd);
+		item.prDeliver = item.prDeliver2;
+		Stock sInfo = null;
+		sInfo = (Stock)Store.stockMgr.find(kwd);
+		alpha = sInfo.newStock;
+		
+		item.prStock = alpha; 
+		
 	}
 }

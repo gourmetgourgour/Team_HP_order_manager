@@ -68,7 +68,13 @@ public class Item implements Manageable {
 	int getSubtotal(int count) {
 		return prPrice * count;
 	}
-
+	public String getinfo() {
+		String kwd;
+		kwd = prCode +"	" + prType +"	" + prName +"	" + prPrice +" " + prStock +"	" + prSize +"	" + prMeta +"	" + prColor +"	" + prDesc +"	"+ primg +"	" + prDeliver +"	" + prDeliver2;
+		
+		return kwd;
+		
+	}
 
 
 }

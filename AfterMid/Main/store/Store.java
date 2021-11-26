@@ -13,8 +13,11 @@ public class Store {
 	static Manager<Cart> cartMgr = new Manager<>();
 	
 	public void run() {
+		System.out.println("영번째");
 		readAllManager();
+		System.out.println("첫번째");
 		writeAllManager();
+		System.out.println("두번째");
 		readAllManager2();
 		Menu menu = new Menu();
 		//menu.loginMenu(scan);

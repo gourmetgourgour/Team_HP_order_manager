@@ -45,7 +45,13 @@ public class User implements Manageable{
 			return true;
 		return false;
 	}
-
+	public String getinfo() {
+		String kwd;
+		kwd = userId + " " + pwd + " " + address + " " + phoneNum;
+		
+		return kwd;
+		
+	}
 
 }
 

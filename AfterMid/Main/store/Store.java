@@ -93,7 +93,7 @@ public class Store {
 				return new Admin();
 			}
 		});
-		orderMgr.writeAll("order2.txt", new Factory<Order>(){
+		/* orderMgr.writeAll("order2.txt", new Factory<Order>(){
 			public Order create() { 
 				return new Order();
 				}
@@ -102,8 +102,9 @@ public class Store {
 			public Stock create() {
 				return new Stock();
 			}
-		});
+		}); */
 	}
+	
 	
 	public static void main(String args[]) {
 		Store store = new Store();

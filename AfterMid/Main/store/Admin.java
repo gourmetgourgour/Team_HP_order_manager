@@ -28,5 +28,12 @@ public class Admin implements Manageable {
 			return true;
 		return false;
 	}
+		public String getinfo() {
+		String kwd;
+		kwd = adminId + " " + pwd;
+		
+		return kwd;
+		
+	}
 }
 

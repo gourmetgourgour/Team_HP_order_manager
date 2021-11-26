@@ -4,9 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-
-
 
 public class Manager<T extends Manageable> {
 	public ArrayList<T> mList = new ArrayList<>();
@@ -34,7 +33,7 @@ public class Manager<T extends Manageable> {
 		try {
 			filein = new Scanner(new File(filename));
 		} catch (Exception e) {
-			System.out.println(filename + ": ?��?�� ?��?��");
+			System.out.println(filename + ": ���� ����");
 			System.exit(0);
 		}
 		return filein;
@@ -58,18 +57,25 @@ public class Manager<T extends Manageable> {
 			}
 		}
 	}
-
+	public List<Manageable> findAll(String kwd){
+		return null;
+	}
+	
+	
 	public void writeAll(String filename, Factory<T> fac) {
 		FileWriter writer;
+		String kwd = null;
+		
 		try {
 			writer = new FileWriter(filename);
 			for(T m: mList) {
-				writer.write(m + System.lineSeparator());
-			   
+				kwd = m.getinfo();
+				writer.write(kwd + "\n");
+			   System.out.println("test"+kwd+" test");
 			}
 			 writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block  System.lineSeparator()
 			e.printStackTrace();
 		} 
 		

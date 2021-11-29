@@ -17,14 +17,15 @@ public class MainGUI {
 	static Store store = new Store();
 	public static Login login = new Login();
 	public static User loggedinuser = new User();
+	public static BasketGui basket = new BasketGui();
 	static void addComponentsToPane() {
 		GuiMenu guimenu = new GuiMenu();
 		GuiUppermenu upmenu = new GuiUppermenu();
 		ProductGui productgui = new ProductGui();
-		BasketGui basket = new BasketGui();
+		
 		guimenu.addMenu();
 		upmenu.addMenu();
-		basket.addBasket();
+//		basket.addBasket();
 		productgui.addproduct();
 		mainPane.add(menuPanel, BorderLayout.LINE_END);
 		mainPane.add(basketpanel);
@@ -43,5 +44,4 @@ public class MainGUI {
 		MainGUI.createAndShowGUI();
 		login.main(args);
 	}
-
 }

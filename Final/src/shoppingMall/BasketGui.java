@@ -1,6 +1,8 @@
 package shoppingMall;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.*;
 import javax.swing.*;
 
@@ -10,58 +12,35 @@ import store.*;
 
 public class BasketGui {	
 		ActionListener Listener = new ButtonListener();
-		
-		JButton clearBasket = new JButton("Ïû•Î∞îÍµ¨Îãà ÎπÑÏö∞Í∏∞");
-		JButton payButton = new JButton("Í≤∞Ï†úÌïòÍ∏∞");
-		Order od = null;
-//		JTextField orderInfo = new JTextField("Î∞∞ÏÜ°ÏòàÏ†ïÏùº: 2021/11/30, Ï¥ù Í∞ÄÍ≤©: 99000");
-		
-	public void addBasket() {
-		
 		JPanel basketlabels = new JPanel();
-		basketlabels.setPreferredSize(new Dimension(500, 600));
-		basketlabels.setLayout(new GridLayout(5,1, 0, 10));
+		JButton clearBasket = new JButton("¿ÂπŸ±∏¥œ ∫ÒøÏ±‚");
+		JButton payButton = new JButton("∞·¡¶«œ±‚");
+		int lastorderId;
+		
+		JTextField orderinfo  = new JTextField();
+		LocalDate Date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY LLLL dd");
+		String todaydate = Date.format(formatter);
+
+	public void addBasket() {
+		lastorderId = Store.orderMgr.mList.get
+				(Store.orderMgr.mList.size()-1).orderId;
+		basketlabels.setPreferredSize(new Dimension(800, 1300));
+		basketlabels.setLayout(new GridLayout(0,3,0,5));
 		basketlabels.setBackground(Color.gray);
-		
-		int lastorderId = Store.orderMgr.mList.get(Store.orderMgr.mList.size()-1).orderId;
-		
-		
-		if(!MainGUI.loggedinuser.myOrderList.isEmpty()) {
-			od = MainGUI.loggedinuser.myOrderList.get(MainGUI.loggedinuser.myOrderList.size()-1);
-				
-		}
-		for(int i=0; i<od.orderedItemList.size();i++) {
-			Item itm = od.orderedItemList.get(i);
-			JLabel products = new JLabel();
-			products.setPreferredSize(new Dimension(600,100));
-			
-			JButton name = new JButton(itm.prName + "\n" + itm.prPrice);
-			name.setFont(new Font("Serif",Font.BOLD, 20));
-			name.setSize(new Dimension(400,120));
-			name.setBackground(Color.white);
-			ImageIcon productimg = getImg(itm.primg, 80);
-			JButton primage = new JButton(productimg);
-			primage.setSize(new Dimension(120, 120));
-			primage.setBackground(Color.white);
-			
-			JButton address = new JButton(od.address);
-			address.setPreferredSize(new Dimension(200,120));
-			products.add(BorderLayout.LINE_START, primage);
-			products.add(BorderLayout.CENTER, name);
-			products.add(BorderLayout.LINE_END, address);
-			
-			basketlabels.add(products);
-		}
 		
 		JScrollPane scroll = new JScrollPane(basketlabels,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scroll.setPreferredSize(new Dimension(900, 400));
-		
+		scroll.setPreferredSize(new Dimension(900, 500));
+		updateBasket();
 		clearBasket.addActionListener(Listener);
+		clearBasket.setSize(400, 100);
 		payButton.addActionListener(Listener);
+		payButton.setSize(400,100);
 		MainGUI.basketpanel.add(scroll);
 		MainGUI.basketpanel.setBounds(20, 30, 1000, 630);
+		
 		MainGUI.basketpanel.add(clearBasket);
 		MainGUI.basketpanel.add(payButton);
 	}
@@ -71,12 +50,45 @@ public class BasketGui {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String buttonName = e.getActionCommand();
-			if(buttonName.equals("Í≤∞Ï†úÌïòÍ∏∞")) {
-				JOptionPane.showMessageDialog(null, "Í≤∞Ï†úÌïòÏãúÍ≤†ÏäµÎãàÍπå? ÏïÑÏßÅÎØ∏ÏôÑÏÑ±„Ö†");
+			Order od = null;
+			od = MainGUI.loggedinuser.myOrderList
+					.get(MainGUI.loggedinuser.myOrderList.size()-1);
+			lastorderId = Store.orderMgr.mList.get
+					(Store.orderMgr.mList.size()-1).orderId;
+			od.calcTotal();
+			int total = od.returntotal();
+			if(buttonName.equals("∞·¡¶«œ±‚")) {
+				int result = JOptionPane.showConfirmDialog(null,
+				"ø¿¥√≥Ø¬•: "+todaydate + "\nπËº€øπ¡§¿œ: "+
+				od.deliveryDate + "\n√— ∞°∞›: "+ total+
+				"∞·¡¶«œΩ√∞⁄Ω¿¥œ±Ó?"
+				);
+				if(result == JOptionPane.CLOSED_OPTION) {
+					return;
+				}
+				else if(result == JOptionPane.YES_OPTION) {
+					//∞·¡¶«œΩ√∞⁄Ω¿¥œ±Ó? øπ ¥≠∑∂¿ª∂ß µø¿€¿Ã ø©±‚
+				}
+				else if(result==JOptionPane.NO_OPTION) {
+					return;
+				}
 			}
-			else if(buttonName.equals("Ïû•Î∞îÍµ¨Îãà ÎπÑÏö∞Í∏∞"))
-				JOptionPane.showMessageDialog(null, "Ï£ºÎ¨∏ÎÇ¥Ïó≠ÏùÑ ÎπÑÏö∏ Í∏∞Îä•, ÎØ∏ÏôÑÏÑ±");
 			
+			
+			else if(buttonName.equals("¿ÂπŸ±∏¥œ ∫ÒøÏ±‚")) {
+				int result = JOptionPane.showConfirmDialog(null,
+						"¡§∏ª ¡ˆøÏΩ√∞⁄Ω¿¥œ±Ó?","Confirm",JOptionPane.YES_NO_OPTION);
+				if(result == JOptionPane.CLOSED_OPTION) {
+					return;
+					}
+				else if(result == JOptionPane.YES_OPTION) {
+						od.orderedItemList.clear();
+						od.orderedItemCount.clear();
+					}
+				else
+					return;
+				
+			}
 		}
 	}
 	ImageIcon getImg(String imgnum, int num) {
@@ -85,5 +97,47 @@ public class BasketGui {
 		Image changeImg= img.getScaledInstance(num,num, Image.SCALE_SMOOTH);	
 		ImageIcon productimg = new ImageIcon(changeImg);
 		return productimg;
+	}
+	
+	public void updateBasket() {
+		Order od = null;
+		if(!MainGUI.loggedinuser.myOrderList.isEmpty()) {
+			od = MainGUI.loggedinuser.myOrderList.get(MainGUI.loggedinuser.myOrderList.size()-1);
+			if(od.orderId == lastorderId+1){
+				for(int i=0; i<od.orderedItemList.size();i++) {
+					Item itm = od.orderedItemList.get(i);
+					JLabel products = new JLabel();
+					products.setSize(600,150);
+					
+					String count = Integer.toString(od.orderedItemCount.get(i));
+					String pname = itm.prName;
+					String price = Integer.toString(itm.prPrice);
+					
+					JButton name = new JButton("<HTML>"
+					+pname+"<br>"+price+"<br>"+count+"</HTML>");
+					
+					name.setFont(new Font("Serif",Font.BOLD, 20));
+					name.setSize(200,120);
+					name.setBackground(Color.white);
+					
+					
+					ImageIcon productimg = getImg(itm.primg, 80);
+					JButton primage = new JButton(productimg);
+					primage.setSize(150, 120);
+					primage.setBackground(Color.white);
+					
+			
+					JButton address = new JButton("πËº€π¯»£: " + od.address);
+					address.setSize(130,120);
+					address.setBorderPainted(false);
+					address.setBackground(Color.white);
+					address.setFont(new Font("Serif",Font.BOLD, 20));
+					
+					basketlabels.add(primage);
+					basketlabels.add(name);
+					basketlabels.add(address);
+				}
+			}
+		}
 	}
 }

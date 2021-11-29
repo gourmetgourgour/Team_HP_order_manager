@@ -13,14 +13,13 @@ public class ProductGui {
 	LocalDate curDate = LocalDate.now();
 	Order od = new Order();
 	int newOrderid = Store.orderMgr.mList.get
-			(Store.orderMgr.mList.size()-1).orderId +1;
-	Font f1 = new Font("Aharoni", Font.BOLD, 15);
-	Font f2 = new Font("Aharoni ÍµµÍ≤å", Font.BOLD, 20);
+			(Store.orderMgr.mList.size()-1).orderId + 1;
+	Font font = new Font("Serif",Font.BOLD, 20);
 	JPanel productPanel = new JPanel();
 	JScrollPane scroll = new JScrollPane(productPanel, 
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
+	
 	String imgnum;
 	LocalDate arrivalDate;
 	void addproduct() {	
@@ -33,7 +32,7 @@ public class ProductGui {
 			ImageIcon productimg =getImg(imgnum, 150);
 			
 			JButton product = new JButton(productimg);
-			product.setBackground(new Color(255, 255, 212));
+			product.setBackground(Color.white);
 			productPanel.add(product);
 			product.addActionListener(new ActionListener(){
 				@Override
@@ -49,13 +48,12 @@ public class ProductGui {
 	}
 	
 	
-	void productInfo(Item clickeditem) {			//ÌÅ¥Î¶≠ÌïòÎ©¥ ÎÇòÏò§Îäî Íµ¨Îß§Ï∞Ω
-		JFrame productInfoframe = new JFrame("Íµ¨Îß§");
+	void productInfo(Item clickeditem) {			//≈¨∏Ø«œ∏È ≥™ø¿¥¬ ±∏∏≈√¢
+		JFrame productInfoframe = new JFrame("±∏∏≈");
 		productInfoframe.setSize(800, 600);
 		productInfoframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		Container pane = productInfoframe.getContentPane();
 		pane.setLayout(null);
-		pane.setBackground(new Color(201, 245, 255));
 		
 		
 		ImageIcon productimg = getImg(clickeditem.primg, 300);
@@ -66,68 +64,68 @@ public class ProductGui {
 		LocalDate Date = curDate.plusDays(clickeditem.prDeliver);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY LLLL dd");
 		String prDate = Date.format(formatter);
-		JLabel arrivaldate = new JLabel("Î∞∞ÏÜ°ÏòàÏ†ïÏùº: " + prDate+"Ïùº");
-		arrivaldate.setFont(f1);
+		JLabel arrivaldate = new JLabel("πËº€øπ¡§¿œ: " + prDate);
+		arrivaldate.setFont(font);
 		arrivaldate.setBounds(10, 310, 300 , 50);
 		pane.add(arrivaldate);
 		
 		String prprice = Integer.toString(clickeditem.prPrice);
-		JLabel price = new JLabel("Í∞ÄÍ≤© :" +prprice);
-		price.setFont(f1);
+		JLabel price = new JLabel("∞°∞› :" +prprice);
+		price.setFont(font);
 		price.setBounds(10, 350, 300, 50);
 		pane.add(price);
 		
 		String prsize = clickeditem.prSize;
-		JLabel size = new JLabel("ÏÇ¨Ïù¥Ï¶à :" + prsize);
-		size.setFont(f1);
+		JLabel size = new JLabel("ªÁ¿Ã¡Ó :" + prsize);
+		size.setFont(font);
 		size.setBounds(10, 400, 300, 50);
 		pane.add(size);
 		
 		String prtype = clickeditem.prType;
-		JLabel type = new JLabel("ÏÜåÏû¨ :" + prtype);
-		type.setFont(f1);
+		JLabel type = new JLabel("º“¿Á :" + prtype);
+		type.setFont(font);
 		type.setBounds(10,450,300,50);
 		pane.add(type);
 		
 		String prcolor = clickeditem.prColor;
-		JLabel color = new JLabel("ÏÉâÏÉÅ :" + prcolor);
-		color.setFont(f1);
+		JLabel color = new JLabel("ªˆªÛ :" + prcolor);
+		color.setFont(font);
 		color.setBounds(10, 500, 300, 50);
 		pane.add(color);
 		
-		//--------------Ïó¨Í∏∞ÍπåÏßÄÍ∞Ä ÏôºÏ™Ω ÏÇ¨ÏßÑ Î∞è Ï†úÌíàÏ†ïÎ≥¥------------------
+		//--------------ø©±‚±Ó¡ˆ∞° øﬁ¬  ªÁ¡¯ π◊ ¡¶«∞¡§∫∏------------------
 		
 		
 		String prname = clickeditem.prName;
-		JLabel name = new JLabel("["+ prname +"]");
-		name.setFont(f2);
+		JLabel name = new JLabel(prname);
+		name.setFont(new Font("Serif",Font.BOLD, 20));
 		name.setBounds(350, 10, 400, 80);
 		pane.add(name);
 		
 		String prdesc = clickeditem.prDesc;
 		JTextArea desc = new JTextArea(prdesc);
-		desc.setFont(f1);
+		desc.setFont(font);
 		desc.setLineWrap(true);
-		desc.setBounds(350, 110, 400, 200);
+		desc.setBounds(350, 200, 400, 200);
 		pane.add(desc);
 		
-		JLabel qtcheck = new JLabel("ÏàòÎüâ :");
-		qtcheck.setFont(f1);
-		qtcheck.setBounds(350, 350, 100, 50);
+		JLabel qtcheck = new JLabel("ºˆ∑Æ :");
+		qtcheck.setFont(font);
+		qtcheck.setBounds(350, 400, 100, 50);
 		pane.add(qtcheck);
 		
 		JTextField quantity = new JTextField("1");
-		quantity.setFont(f1);
+		quantity.setFont(font);
 		quantity.setEditable(false);
-		quantity.setBounds(400, 350, 100, 40);
+		quantity.setBounds(430, 400, 100, 50);
 		pane.add(quantity);
 		
 		JButton up = new JButton("UP");
 		JButton down = new JButton("DOWN");
-		up.setBounds(570, 350, 80, 40);
-		up.setBackground(new Color(255, 222, 212));
-		down.setBounds(660, 350, 80, 40);
-		down.setBackground(new Color(255, 222, 212));
+		up.setBounds(570, 400, 80, 40);
+		up.setBackground(Color.white);
+		down.setBounds(660, 400, 80, 40);
+		down.setBackground(Color.white);
 		up.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -152,9 +150,9 @@ public class ProductGui {
 		
 		
 		
-		JButton addtobasket = new JButton("Ïû•Î∞îÍµ¨ÎãàÏóê Ï∂îÍ∞Ä");
-		addtobasket.setBounds(350, 450, 400,50);
-		addtobasket.setBackground(new Color(255, 255, 212));
+		JButton addtobasket = new JButton("¿ÂπŸ±∏¥œø° √ﬂ∞°");
+		addtobasket.setBounds(350, 500, 400,50);
+		addtobasket.setBackground(Color.white);
 		addtobasket.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -173,7 +171,7 @@ public class ProductGui {
 				productInfoframe.dispose();
 			}
 		});
-		addtobasket.setFont(f1);
+		addtobasket.setFont(font);
 		pane.add(addtobasket);
 		
 		addtobasket.addActionListener(null);

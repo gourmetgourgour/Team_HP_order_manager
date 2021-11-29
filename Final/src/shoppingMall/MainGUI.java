@@ -11,7 +11,7 @@ public class MainGUI {
 	static JPanel menuPanel = new JPanel();
 	static JPanel products = new JPanel();
 	static JPanel leftView = new JPanel();
-	static public JFrame mainFrame = new JFrame("Çàº¹ÇÑ ÆÇ¸ÅÆÀ");
+	static public JFrame mainFrame = new JFrame("�ູ�� �Ǹ���");
 	static Container mainPane = mainFrame.getContentPane();
 	static JPanel basketpanel = new JPanel();
 	static Store store = new Store();
@@ -25,7 +25,7 @@ public class MainGUI {
 		
 		guimenu.addMenu();
 		upmenu.addMenu();
-//		basket.addBasket();
+		basket.addBasket();
 		productgui.addproduct();
 		mainPane.add(menuPanel, BorderLayout.LINE_END);
 		mainPane.add(basketpanel);

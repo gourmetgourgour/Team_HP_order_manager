@@ -8,7 +8,8 @@ import store.Order;
 
 
 public class GuiMenu {
-	String menus [] = {"ì‡¼í•‘", "ì£¼ë¬¸ë‚´ì—­", "ì¥ë°”êµ¬ë‹ˆ", "ë¡œê·¸ì•„ì›ƒ",};
+	String menus [] = {"¼îÇÎ", "ÁÖ¹®³»¿ª", "Àå¹Ù±¸´Ï", "·Î±×¾Æ¿ô",};
+	int count=0;
 	void addMenu() {
 		ActionListener listener = new ButtonListener();
 		MainGUI.menuPanel.setLayout(new GridLayout(5,1,0,10));
@@ -25,7 +26,7 @@ public class GuiMenu {
 		MainGUI.menuPanel.setBackground(Color.white);
 	}
 	void addLogo() {
-		ImageIcon logo = new ImageIcon("./images/logo.png");			//ë³´ë…¸ë³´ë…¸ì´ë¯¸ì§€ ì‚½ì…
+		ImageIcon logo = new ImageIcon("./images/logo.png");			//º¸³ëº¸³ëÀÌ¹ÌÁö »ğÀÔ
 		Image img = logo.getImage();
 		Image changeImg= img.getScaledInstance(150,110, Image.SCALE_SMOOTH);
 		ImageIcon logo2 = new ImageIcon(changeImg);
@@ -39,24 +40,21 @@ public class GuiMenu {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String buttonName = e.getActionCommand();
-			if(buttonName.equals("ì‡¼í•‘")) {
+			if(buttonName.equals("¼îÇÎ")) {
 				MainGUI.basketpanel.setVisible(false);
 				MainGUI.leftView.setVisible(true);
 			}
-			else if(buttonName.equals("ì£¼ë¬¸ë‚´ì—­")) {
-				Order od = MainGUI.loggedinuser.myOrderList.get(0);
-//				JOptionPane.showMessageDialog(null, "ì£¼ë¬¸ë‚´ì—­");
-				JOptionPane.showMessageDialog(null, od.orderedItemList.get(0).prName);
-				JOptionPane.showMessageDialog(null, Integer.toString(od.orderedItemCount.get(0)));
-				JOptionPane.showMessageDialog(null, Integer.toString(od.orderedItemList.get(0).getSubtotal(od.orderedItemCount.get(0))));
-				JOptionPane.showMessageDialog(null, MainGUI.loggedinuser.address);
+			else if(buttonName.equals("ÁÖ¹®³»¿ª")) {
+				JOptionPane.showMessageDialog(null, "ÁÖ¹®³»¿ª");
 			}
-			else if(buttonName.equals("ì¥ë°”êµ¬ë‹ˆ")) {
-				MainGUI.basket.addBasket();
+			else if(buttonName.equals("Àå¹Ù±¸´Ï")) {
+				MainGUI.basket.basketlabels.removeAll();
+				MainGUI.basket.updateBasket();
+
 				MainGUI.leftView.setVisible(false);
 				MainGUI.basketpanel.setVisible(true);
 			}
-			else if(buttonName.equals("ë¡œê·¸ì•„ì›ƒ")) {
+			else if(buttonName.equals("·Î±×¾Æ¿ô")) {
 				MainGUI.loggedinuser = null;
 				MainGUI.mainFrame.setVisible(false);
 				MainGUI.login.main(menus);

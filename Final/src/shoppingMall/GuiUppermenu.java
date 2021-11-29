@@ -6,43 +6,43 @@ public class GuiUppermenu {
 	    JPanel upperMenu = new JPanel();
 		JLabel sortMenuLabel = new JLabel();
 		JLabel selectedSort = new JLabel();
-		String sortMenus[] = {"ì˜· ì¢…ë¥˜", "ìƒ‰ìƒ", "ì‚¬ì´ì¦ˆ", "ì†Œì¬", "ë¹ ë¥¸ ë°°ì†¡"};
+		String sortMenus[] = {"¿Ê Á¾·ù", "»ö»ó", "»çÀÌÁî", "¼ÒÀç", "ºü¸¥ ¹è¼Û"};
 	void addMenu() {
 		upperMenu.setPreferredSize(new Dimension(1050,130));
 		sortMenuLabel.setPreferredSize(new Dimension(1000,55));
 		sortMenuLabel.setLayout(null);
-		upperMenu.setBackground(new Color(203,230,255));
+		upperMenu.setBackground(Color.white);
 		for(int i=0; i<sortMenus.length; i++) {
 			JButton button = new JButton(sortMenus[i]);
 			sortMenuLabel.add(button);
-			int xcode = 30;										//ë²„íŠ¼ì˜ xê°’ ì´ˆê¸°ìœ„ì¹˜
+			int xcode = 30;										//¹öÆ°ÀÇ x°ª ÃÊ±âÀ§Ä¡
 			xcode += i*(180);
 			button.setBounds(xcode, 5, 150, 50);
-			button.setBackground(new Color(232,244,255));
+			button.setBackground(Color.white);
 			if(i == 0) {
-				button.setForeground(Color.black);
+				button.setForeground(Color.red);
 				}
 				else if(i==1) {
-					button.setForeground(Color.black);
+					button.setForeground(Color.magenta);
 				}
 				else if(i==2) {
-					button.setForeground(Color.black);
+					button.setForeground(Color.green);
 				}
 				else if(i==3) {
-					button.setForeground(Color.black);
+					button.setForeground(Color.blue);
 				}
 				else if(i==4) {
-					button.setForeground(Color.black);
+					button.setForeground(Color.cyan);
 				}
 				else if(i==5) {
-					button.setForeground(Color.black);
+					button.setForeground(Color.ORANGE);
 				}					
 		}
 		upperMenu.add(sortMenuLabel);
 		
 		selectedSort.setPreferredSize(new Dimension(1000, 130));
 		selectedSort.setLayout(null);
-		JButton reset = new JButton("ì´ˆê¸°í™”");
+		JButton reset = new JButton("ÃÊ±âÈ­");
 		
 		for(int i=0;i<sortMenus.length; i++) {
 			int xcode = 70;										
@@ -50,29 +50,29 @@ public class GuiUppermenu {
 
 			JLabel sortLabel = new JLabel("["+sortMenus[i]+"] :");
 			if(i == 0) {
-			sortLabel.setForeground(new Color(223,0,104));
+			sortLabel.setForeground(Color.red);
 			}
 			else if(i==1) {
-				sortLabel.setForeground(new Color(223,0,104));
+				sortLabel.setForeground(Color.magenta);
 			}
 			else if(i==2) {
-				sortLabel.setForeground(new Color(223,0,104));
+				sortLabel.setForeground(Color.green);
 			}
 			else if(i==3) {
-				sortLabel.setForeground(new Color(223,0,104));
+				sortLabel.setForeground(Color.blue);
 			}
 			else if(i==4) {
-				sortLabel.setForeground(new Color(223,0,104));
+				sortLabel.setForeground(Color.cyan);
 			}
 			else if(i==5) {
-				sortLabel.setForeground(new Color(223,0,104));
+				sortLabel.setForeground(Color.ORANGE);
 			}
 			selectedSort.add(sortLabel);
 			sortLabel.setBounds(xcode, 0, 200, 50);
 		}
 		selectedSort.add(reset);
 		reset.setBounds(905, 0, 80, 40);
-		reset.setBackground(new Color(232,244,255));
+		reset.setBackground(Color.white);
 		upperMenu.add(selectedSort);
 		
 		MainGUI.leftView.add(upperMenu);

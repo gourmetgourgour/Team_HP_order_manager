@@ -11,8 +11,10 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 
@@ -20,9 +22,9 @@ import store.*;
 
 public class AdminGui {
 	static ActionListener listener = new ButtonListener();
-	static public JFrame adminFrame = new JFrame("ê´€ë¦¬ì GUI");
+	static public JFrame adminFrame = new JFrame("°ü¸®ÀÚ GUI");
 	static Container pane = adminFrame.getContentPane();
-	static Font font = new Font("Serif",Font.PLAIN, 18);	//ì´ìœí°íŠ¸ ì¶”ì²œë°›ìŠµë‹ˆë‹¤..
+	static Font font = new Font("Serif",Font.PLAIN, 18);	//ÀÌ»ÛÆùÆ® ÃßÃµ¹Ş½À´Ï´Ù..
 	public static void main(String[] args) {
 		AdminGui.createAndShowGUI();
 	}
@@ -31,49 +33,35 @@ public class AdminGui {
 		adminFrame.setSize(1200, 700);
 		adminFrame.setLayout(null);
 		adminFrame.setLocationRelativeTo(null);
-		
 		addAdmin();
+		addTable();
 		pane.setBackground(Color.gray);
 		adminFrame.setVisible(true);
 	}
 	static void addAdmin() {
-		
-		JButton searchproduct = new JButton("ì œí’ˆ ê²€ìƒ‰");
-		searchproduct.setBounds(1020, 30, 150, 100 );
+		JButton searchproduct = new JButton("Á¦Ç° °Ë»ö");
+		searchproduct.setBounds(1020, 70, 150, 150 );
 		searchproduct.setBackground(Color.white);
 		searchproduct.setFont(font);
 		searchproduct.addActionListener(listener);
 		pane.add(searchproduct);
 		
-		JButton searchuser = new JButton("ìœ ì € ê²€ìƒ‰");
-		searchuser.setBounds(1020, 160, 150, 100);
+		JButton searchuser = new JButton("À¯Àú °Ë»ö");
+		searchuser.setBounds(1020, 260, 150, 150);
 		searchuser.setBackground(Color.white);
 		searchuser.setFont(font);
 		searchuser.addActionListener(listener);
 		pane.add(searchuser);
 		
-		JButton inputRestock = new JButton("ì¬ì…ê³ ì˜ˆì •ì¼ ì…ë ¥");
-		inputRestock.setBounds(1020, 280, 150, 100);
-		inputRestock.setBackground(Color.white);
-		inputRestock.setFont(font);
-		inputRestock.addActionListener(listener);
-		pane.add(inputRestock);
 		
-		JButton fileupdate = new JButton("íŒŒì¼ì—…ë°ì´íŠ¸");
-		fileupdate.setBounds(1020, 400, 150, 100);
-		fileupdate.setBackground(Color.white);
-		fileupdate.setFont(font);
-		fileupdate.addActionListener(listener);
-		pane.add(fileupdate);
-		
-		JButton logout = new JButton("ë¡œê·¸ì•„ì›ƒ");
-		logout.setBounds(1020, 520, 150, 100);	
+		JButton logout = new JButton("·Î±×¾Æ¿ô");
+		logout.setBounds(1020, 450, 150, 150);	
 		logout.setBackground(Color.white);
 		logout.setFont(font);
 		logout.addActionListener(listener);
 		pane.add(logout);
 		
-		ImageIcon logo = new ImageIcon("./images/logo2.png");			//ë³´ë…¸ë³´ë…¸ì´ë¯¸ì§€ ì‚½ì…
+		ImageIcon logo = new ImageIcon("./images/logo2.png");			//º¸³ëº¸³ëÀÌ¹ÌÁö »ğÀÔ
 		Image img = logo.getImage();
 		Image changeImg= img.getScaledInstance(180,160, Image.SCALE_SMOOTH);
 		ImageIcon logo2 = new ImageIcon(changeImg);
@@ -84,7 +72,9 @@ public class AdminGui {
 		logobutton.setBounds(500, 20, 180, 160);
 		pane.add(logobutton);
 		
-		String header[] = {"ì œí’ˆì½”ë“œ", "ì œí’ˆëª…", "ìˆ˜ëŸ‰", "ì…ê³ ì˜ˆì •ì¼", "ì…ê³ ìˆ˜ëŸ‰"};
+	}
+	static void addTable() {
+		String header[] = {"Á¦Ç°ÄÚµå", "Á¦Ç°¸í", "¼ö·®", "ÀÔ°í¿¹Á¤ÀÏ", "ÀÔ°í¼ö·®"};
 		String contents[][] = {{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},
 				{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},
 				{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},
@@ -106,8 +96,8 @@ public class AdminGui {
 			table.setValueAt(item.prCode, i, 0);
 			table.setValueAt(item.prName, i, 1);
 			table.setValueAt(Integer.toString(item.prStock), i, 2);
-			table.setValueAt("ì…ê³ ì˜ˆì •ì¼", i, 3);
-			table.setValueAt("ì…ê³ ìˆ˜ëŸ‰", i, 4);
+			table.setValueAt("ÀÔ°í¿¹Á¤ÀÏ", i, 3);
+			table.setValueAt("ÀÔ°í¼ö·®", i, 4);
 		}
 		
 		
@@ -120,24 +110,36 @@ public class AdminGui {
 		
 		pane.add(scroll);
 	}
-	
 	static class ButtonListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			Item itm = null;
+			User usr = null;
 			String buttonName = e.getActionCommand();
-			if(buttonName.equals("ì œí’ˆ ê²€ìƒ‰")) {
-				
+			if(buttonName.equals("Á¦Ç° °Ë»ö")) {
+				String productName = JOptionPane.showInputDialog("Á¦Ç° ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+				if(productName == null)
+					return;
+				for(int i=0;i<Store.itemMgr.mList.size();i++) {
+					if(Store.itemMgr.mList.get(i).matches(productName)) {
+						itm = Store.itemMgr.mList.get(i);
+						JOptionPane.showMessageDialog(null, "Á¦Ç°¸í: " +itm.prName+"\nÁ¦Ç°ÄÚµå: "+itm.prCode+"\nÀç°í¼ö·®: "+ itm.prStock);
+					}
+				}
 			}
-			else if(buttonName.equals("ìœ ì € ê²€ìƒ‰")) {
-				
+			else if(buttonName.equals("À¯Àú °Ë»ö")) {
+				String username = JOptionPane.showInputDialog("À¯Àú¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+				if(username == null)
+					return;
+				for(int i=0;i<Store.userMgr.mList.size();i++){
+					if(Store.userMgr.mList.get(i).matches(username)) {
+						usr = Store.userMgr.mList.get(i);
+						JOptionPane.showMessageDialog(null, "À¯Àú¾ÆÀÌµğ: "+usr.userId +"\nºñ¹Ğ¹øÈ£: "+usr.pwd);
+					}
+				}		
 			}
-			else if(buttonName.equals("ì¬ì…ê³ ì˜ˆì •ì¼ ì…ë ¥")) {
-				
-			}
-			else if(buttonName.equals("íŒŒì¼ì—…ë°ì´íŠ¸")) {
-				
-			}
-			else if(buttonName.equals("ë¡œê·¸ì•„ì›ƒ")) {
+			else if(buttonName.equals("·Î±×¾Æ¿ô")) {
 				adminFrame.dispose();
 				MainGUI.login.main(null);
 			}

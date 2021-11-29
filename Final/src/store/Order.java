@@ -88,6 +88,9 @@ public class Order implements Manageable {
 		}
 	}
 	public void orderCreate(User user) {
+		
+		//myOrderList.add GUI 에서 된걸 그대로 불러와서 orderCreate 메소드가 오더를 추가해서 업데이트 
+		
 		orderId = store.User.myOrderList.size()+1001;
 		address = user.address;
 		LocalDate alpha = LocalDate.now();

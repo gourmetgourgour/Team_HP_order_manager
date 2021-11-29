@@ -9,7 +9,6 @@ import store.Order;
 
 public class GuiMenu {
 	String menus [] = {"쇼핑", "주문내역", "장바구니", "로그아웃",};
-	Font font = new Font("Aharoni", Font.BOLD, 13);
 	void addMenu() {
 		ActionListener listener = new ButtonListener();
 		MainGUI.menuPanel.setLayout(new GridLayout(5,1,0,10));
@@ -19,12 +18,11 @@ public class GuiMenu {
 			String menuname = menus[i];										
 			JButton button = new JButton(menuname);
 			button.addActionListener(listener);
-			button.setBackground(new Color(153,204,255));
-			button.setFont(font);
+			button.setBackground(Color.white);
 			MainGUI.menuPanel.add(button);
 			
 		}
-		MainGUI.menuPanel.setBackground(new Color(232,244,255));
+		MainGUI.menuPanel.setBackground(Color.white);
 	}
 	void addLogo() {
 		ImageIcon logo = new ImageIcon("./images/logo.png");			//보노보노이미지 삽입
@@ -54,6 +52,7 @@ public class GuiMenu {
 				JOptionPane.showMessageDialog(null, MainGUI.loggedinuser.address);
 			}
 			else if(buttonName.equals("장바구니")) {
+				MainGUI.basket.addBasket();
 				MainGUI.leftView.setVisible(false);
 				MainGUI.basketpanel.setVisible(true);
 			}

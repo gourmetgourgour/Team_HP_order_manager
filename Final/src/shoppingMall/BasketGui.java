@@ -13,14 +13,14 @@ import store.*;
 public class BasketGui {	
 		ActionListener Listener = new ButtonListener();
 		JPanel basketlabels = new JPanel();
-		JButton clearBasket = new JButton("Àå¹Ù±¸´Ï ºñ¿ì±â");
-		JButton payButton = new JButton("°áÁ¦ÇÏ±â");
-		int lastorderId;
+		JButton clearBasket = new JButton("ì¥ë°”êµ¬ë‹ˆ ë¹„ìš°ê¸°");
+		JButton payButton = new JButton("ê²°ì œí•˜ê¸°");
+		public int lastorderId;
 		
 		JTextField orderinfo  = new JTextField();
-		LocalDate Date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY LLLL dd");
-		String todaydate = Date.format(formatter);
+		static LocalDate Date = LocalDate.now();
+		static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY LLLL dd");
+		public static String todaydate = Date.format(formatter);
 
 	public void addBasket() {
 		lastorderId = Store.orderMgr.mList.get
@@ -51,23 +51,39 @@ public class BasketGui {
 		public void actionPerformed(ActionEvent e) {
 			String buttonName = e.getActionCommand();
 			Order od = null;
-			od = MainGUI.loggedinuser.myOrderList
-					.get(MainGUI.loggedinuser.myOrderList.size()-1);
-			lastorderId = Store.orderMgr.mList.get
-					(Store.orderMgr.mList.size()-1).orderId;
+			od = MainGUI.loggedinuser.myOrderList.get(MainGUI.loggedinuser.myOrderList.size()-1);
+			lastorderId = Store.orderMgr.mList.get(Store.orderMgr.mList.size()-1).orderId;
 			od.calcTotal();
-			int total = od.returntotal();
-			if(buttonName.equals("°áÁ¦ÇÏ±â")) {
+			int total = 0;
+					// od.returntotal(); 
+			if(buttonName.equals("ê²°ì œí•˜ê¸°")) {
 				int result = JOptionPane.showConfirmDialog(null,
-				"¿À´Ã³¯Â¥: "+todaydate + "\n¹è¼Û¿¹Á¤ÀÏ: "+
-				od.deliveryDate + "\nÃÑ °¡°İ: "+ total+
-				"°áÁ¦ÇÏ½Ã°Ú½À´Ï±î?"
+				"ì˜¤ëŠ˜ë‚ ì§œ: "+todaydate + "\në°°ì†¡ì˜ˆì •ì¼: "+
+				od.deliveryDate + "\nì´ ê°€ê²©: "+ total+
+				"ê²°ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
 				);
 				if(result == JOptionPane.CLOSED_OPTION) {
 					return;
 				}
 				else if(result == JOptionPane.YES_OPTION) {
-					//°áÁ¦ÇÏ½Ã°Ú½À´Ï±î? ¿¹ ´­·¶À»¶§ µ¿ÀÛÀÌ ¿©±â
+					
+					
+					od.user = (User)Store.userMgr.find(MainGUI.loggedinuser.userId);
+					int odindex = store.User.myOrderList.size()-1;
+					store.User.myOrderList.add(odindex, od);
+					Order.fileUpdate(od);
+					System.out.println("ì˜¤ë” ì¶œë ¥");
+					
+					System.out.printf("%d %s %s, %s, %s, %s", od.orderId, od.address, od.deliveryDate, od.orderDate, od.orderedItemList, od.orderedItemCount);
+					System.out.printf("%s", MainGUI.loggedinuser.phoneNum);
+					System.out.println(od.user.userId);
+					System.out.println("od ì¶œë ¥");
+					System.out.println(od.toString());
+					/*Order order = new Order();
+					//ê²°ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ? ì˜ˆ ëˆŒë €ì„ë•Œ ë™ì‘ì´ ì—¬ê¸°
+						order.orderCreate(od);*/
+					
+					
 				}
 				else if(result==JOptionPane.NO_OPTION) {
 					return;
@@ -75,9 +91,9 @@ public class BasketGui {
 			}
 			
 			
-			else if(buttonName.equals("Àå¹Ù±¸´Ï ºñ¿ì±â")) {
+			else if(buttonName.equals("ì¥ë°”êµ¬ë‹ˆ ë¹„ìš°ê¸°")) {
 				int result = JOptionPane.showConfirmDialog(null,
-						"Á¤¸» Áö¿ì½Ã°Ú½À´Ï±î?","Confirm",JOptionPane.YES_NO_OPTION);
+						"ì •ë§ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?","Confirm",JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.CLOSED_OPTION) {
 					return;
 					}
@@ -127,7 +143,7 @@ public class BasketGui {
 					primage.setBackground(Color.white);
 					
 			
-					JButton address = new JButton("¹è¼Û¹øÈ£: " + od.address);
+					JButton address = new JButton("ë°°ì†¡ë²ˆí˜¸: " + od.address);
 					address.setSize(130,120);
 					address.setBorderPainted(false);
 					address.setBackground(Color.white);

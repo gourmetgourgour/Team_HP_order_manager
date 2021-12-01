@@ -10,15 +10,15 @@ public class Store {
 	public static Manager<Admin> adminMgr = new Manager<>();
 	public static Manager<Order> orderMgr = new Manager<>();
 	public static Manager<Stock> stockMgr = new Manager<>();
-	public static Manager<Cart> cartMgr = new Manager<>();
+
 	
 	public void run() {
 		System.out.println("영번째");
 		readAllManager();
 		System.out.println("첫번째");
-		writeAllManager();
+		//writeAllManager();
 		System.out.println("두번째");
-		readAllManager2();
+		//readAllManager2();
 		Menu menu = new Menu();
 		//menu.loginMenu(scan);
 	}

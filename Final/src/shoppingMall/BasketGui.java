@@ -80,6 +80,20 @@ public class BasketGui {
 						{
 						Item itm = od.orderedItemList.get(alpha);
 						store.Order.addProduct(itm.prCode, od.orderedItemCount.get(alpha));
+						
+						//날짜 계산 
+						LocalDate testDate = LocalDate.now();
+						DateTimeFormatter Ndate = DateTimeFormatter.ofPattern("yyyyMMdd");
+					    LocalDate tempDate = testDate.plusDays(itm.prDeliver);
+					    String odDate = od.deliveryDate;
+					    
+					    LocalDate StockDate = LocalDate.parse(odDate, Ndate); 
+					    int periodDate = (int) ChronoUnit.DAYS.between(tempDate,StockDate);
+					    System.out.printf("%d", periodDate);
+					    if (periodDate <= 0) {
+					    	String formatDate = LocalDate.from(tempDate).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+					    	od.deliveryDate = formatDate;
+					    }
 						/* LocalDate curDate = LocalDate.now();
 						LocalDate Date = curDate.plusDays(itm.prDeliver);
 						
@@ -92,6 +106,16 @@ public class BasketGui {
 				        
 						if(periodDate > 0)
 							od.deliveryDate = prDate;	
+							
+							  testDate = LocalDate.now();
+		 prCode2 = scan.next();
+	     newStock = scan.nextInt();
+	     tempDate = scan.next();
+	     DateTimeFormatter Ndate = DateTimeFormatter.ofPattern("yyyyMMdd");
+	     StockDate = LocalDate.parse(tempDate, Ndate); 
+	    
+	     periodDate = (int) ChronoUnit.DAYS.between(testDate,StockDate);
+	        System.out.print(periodDate);
 						*/
 						}
 					

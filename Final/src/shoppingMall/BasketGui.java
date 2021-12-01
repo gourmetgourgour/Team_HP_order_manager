@@ -1,10 +1,18 @@
 package shoppingMall;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 
 import store.*;
@@ -69,11 +77,22 @@ public class BasketGui {
 				else if(result == JOptionPane.YES_OPTION) {
 					
 					for(int alpha = 0; alpha < od.orderedItemList.size(); alpha++ )
-							
 						{
-							Item itm = od.orderedItemList.get(alpha);
-							store.Order.addProduct(itm.prCode, od.orderedItemCount.get(alpha));
-							if(itm.prDeliver > od.deliveryDate)
+						Item itm = od.orderedItemList.get(alpha);
+						store.Order.addProduct(itm.prCode, od.orderedItemCount.get(alpha));
+						/* LocalDate curDate = LocalDate.now();
+						LocalDate Date = curDate.plusDays(itm.prDeliver);
+						
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+				        String strDate = od.deliveryDate;
+				        LocalDate date = LocalDate.parse(strDate, formatter);
+				        int periodDate = (int) ChronoUnit.DAYS.between(Date, date);
+				        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyymmdd");
+						String prDate = Date.format(formatter); 
+				        
+						if(periodDate > 0)
+							od.deliveryDate = prDate;	
+						*/
 						}
 					
 					

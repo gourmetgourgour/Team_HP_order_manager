@@ -51,10 +51,11 @@ public class BasketGui {
 		public void actionPerformed(ActionEvent e) {
 			String buttonName = e.getActionCommand();
 			Order od = null;
-			od = MainGUI.loggedinuser.myOrderList.get(MainGUI.loggedinuser.myOrderList.size()-1);
+			od = User.myOrderList.get(User.myOrderList.size()-1);
 			lastorderId = Store.orderMgr.mList.get(Store.orderMgr.mList.size()-1).orderId;
 			od.calcTotal();
-			int total = 0;
+			
+			int total = od.total;
 					// od.returntotal(); 
 			if(buttonName.equals("결제하기")) {
 				int result = JOptionPane.showConfirmDialog(null,
@@ -66,6 +67,14 @@ public class BasketGui {
 					return;
 				}
 				else if(result == JOptionPane.YES_OPTION) {
+					
+					for(int alpha = 0; alpha < od.orderedItemList.size(); alpha++ )
+							
+						{
+							Item itm = od.orderedItemList.get(alpha);
+							store.Order.addProduct(itm.prCode, od.orderedItemCount.get(alpha));
+							if(itm.prDeliver > od.deliveryDate)
+						}
 					
 					
 					od.user = (User)Store.userMgr.find(MainGUI.loggedinuser.userId);

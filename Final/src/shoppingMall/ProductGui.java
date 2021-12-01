@@ -62,7 +62,7 @@ public class ProductGui {
 		pane.add(productimage);
 		
 		LocalDate Date = curDate.plusDays(clickeditem.prDeliver);
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY LLLL dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYYMMdd");
 		String prDate = Date.format(formatter);
 		JLabel arrivaldate = new JLabel("배송예정일: " + prDate);
 		arrivaldate.setFont(font);

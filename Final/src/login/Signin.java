@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -85,7 +86,7 @@ public class Signin extends JFrame{
 		Id.setBounds(159, 106, 186, 35);
 		contentPane.add(Id);
 		
-		Password = new JTextField();
+		Password = new JPasswordField();
 		Password.setColumns(10);
 		Password.setBounds(159, 156, 186, 35);
 		contentPane.add(Password);

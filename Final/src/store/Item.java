@@ -41,6 +41,7 @@ public class Item implements Manageable {
         System.out.print(primg);
         prDeliver = scan.nextInt();
         System.out.println(prDeliver);
+        prDeliver2 = scan.nextInt();
     }
     
     public void print() { // Item

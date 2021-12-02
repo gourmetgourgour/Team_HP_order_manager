@@ -48,8 +48,8 @@ public class ProductGui {
 	}
 	
 	
-	void productInfo(Item clickeditem) {			//í´ë¦­í•˜ë©´ ë‚˜ì˜¤ëŠ” êµ¬ë§¤ì°½
-		JFrame productInfoframe = new JFrame("êµ¬ë§¤");
+	void productInfo(Item clickeditem) {			//Å¬¸¯ÇÏ¸é ³ª¿À´Â ±¸¸ÅÃ¢
+		JFrame productInfoframe = new JFrame("±¸¸Å");
 		productInfoframe.setSize(800, 600);
 		productInfoframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		Container pane = productInfoframe.getContentPane();
@@ -64,36 +64,36 @@ public class ProductGui {
 		LocalDate Date = curDate.plusDays(clickeditem.prDeliver);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYYMMdd");
 		String prDate = Date.format(formatter);
-		JLabel arrivaldate = new JLabel("ë°°ì†¡ì˜ˆì •ì¼: " + prDate);
+		JLabel arrivaldate = new JLabel("¹è¼Û¿¹Á¤ÀÏ: " + prDate);
 		arrivaldate.setFont(font);
 		arrivaldate.setBounds(10, 310, 300 , 50);
 		pane.add(arrivaldate);
 		
 		String prprice = Integer.toString(clickeditem.prPrice);
-		JLabel price = new JLabel("ê°€ê²© :" +prprice);
+		JLabel price = new JLabel("°¡°İ :" +prprice);
 		price.setFont(font);
 		price.setBounds(10, 350, 300, 50);
 		pane.add(price);
 		
 		String prsize = clickeditem.prSize;
-		JLabel size = new JLabel("ì‚¬ì´ì¦ˆ :" + prsize);
+		JLabel size = new JLabel("»çÀÌÁî :" + prsize);
 		size.setFont(font);
 		size.setBounds(10, 400, 300, 50);
 		pane.add(size);
 		
 		String prtype = clickeditem.prType;
-		JLabel type = new JLabel("ì†Œì¬ :" + prtype);
+		JLabel type = new JLabel("¼ÒÀç :" + prtype);
 		type.setFont(font);
 		type.setBounds(10,450,300,50);
 		pane.add(type);
 		
 		String prcolor = clickeditem.prColor;
-		JLabel color = new JLabel("ìƒ‰ìƒ :" + prcolor);
+		JLabel color = new JLabel("»ö»ó :" + prcolor);
 		color.setFont(font);
 		color.setBounds(10, 500, 300, 50);
 		pane.add(color);
 		
-		//--------------ì—¬ê¸°ê¹Œì§€ê°€ ì™¼ìª½ ì‚¬ì§„ ë° ì œí’ˆì •ë³´------------------
+		//--------------¿©±â±îÁö°¡ ¿ŞÂÊ »çÁø ¹× Á¦Ç°Á¤º¸------------------
 		
 		
 		String prname = clickeditem.prName;
@@ -109,7 +109,7 @@ public class ProductGui {
 		desc.setBounds(350, 200, 400, 200);
 		pane.add(desc);
 		
-		JLabel qtcheck = new JLabel("ìˆ˜ëŸ‰ :");
+		JLabel qtcheck = new JLabel("¼ö·® :");
 		qtcheck.setFont(font);
 		qtcheck.setBounds(350, 400, 100, 50);
 		pane.add(qtcheck);
@@ -150,7 +150,7 @@ public class ProductGui {
 		
 		
 		
-		JButton addtobasket = new JButton("ì¥ë°”êµ¬ë‹ˆì— ì¶”ê°€");
+		JButton addtobasket = new JButton("Àå¹Ù±¸´Ï¿¡ Ãß°¡");
 		addtobasket.setBounds(350, 500, 400,50);
 		addtobasket.setBackground(Color.white);
 		addtobasket.addActionListener(new ActionListener() {

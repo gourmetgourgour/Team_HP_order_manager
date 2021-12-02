@@ -21,8 +21,8 @@ import store.*;
 public class BasketGui {	
 		ActionListener Listener = new ButtonListener();
 		JPanel basketlabels = new JPanel();
-		JButton clearBasket = new JButton("ì¥ë°”êµ¬ë‹ˆ ë¹„ìš°ê¸°");
-		JButton payButton = new JButton("ê²°ì œí•˜ê¸°");
+		JButton clearBasket = new JButton("Àå¹Ù±¸´Ï ºñ¿ì±â");
+		JButton payButton = new JButton("°áÁ¦ÇÏ±â");
 		public int lastorderId;
 		
 		JTextField orderinfo  = new JTextField();
@@ -65,11 +65,11 @@ public class BasketGui {
 			
 			int total = od.total;
 					// od.returntotal(); 
-			if(buttonName.equals("ê²°ì œí•˜ê¸°")) {
+			if(buttonName.equals("°áÁ¦ÇÏ±â")) {
 				int result = JOptionPane.showConfirmDialog(null,
-				"ì˜¤ëŠ˜ë‚ ì§œ: "+todaydate + "\në°°ì†¡ì˜ˆì •ì¼: "+
-				od.deliveryDate + "\nì´ ê°€ê²©: "+ total+
-				"ê²°ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+				"¿À´Ã³¯Â¥: "+todaydate + "\n¹è¼Û¿¹Á¤ÀÏ: "+
+				od.deliveryDate + "\nÃÑ °¡°İ: "+ total+
+				"°áÁ¦ÇÏ½Ã°Ú½À´Ï±î?"
 				);
 				if(result == JOptionPane.CLOSED_OPTION) {
 					return;
@@ -81,7 +81,7 @@ public class BasketGui {
 						Item itm = od.orderedItemList.get(alpha);
 						store.Order.addProduct(itm.prCode, od.orderedItemCount.get(alpha));
 						
-						//ë‚ ì§œ ê³„ì‚° 
+						//³¯Â¥ °è»ê 
 						LocalDate testDate = LocalDate.now();
 						DateTimeFormatter Ndate = DateTimeFormatter.ofPattern("yyyyMMdd");
 					    LocalDate tempDate = testDate.plusDays(itm.prDeliver);
@@ -124,15 +124,15 @@ public class BasketGui {
 					int odindex = store.User.myOrderList.size()-1;
 					store.User.myOrderList.add(odindex, od);
 					Order.fileUpdate(od);
-					System.out.println("ì˜¤ë” ì¶œë ¥");
+					System.out.println("¿À´õ Ãâ·Â");
 					
 					System.out.printf("%d %s %s, %s, %s, %s", od.orderId, od.address, od.deliveryDate, od.orderDate, od.orderedItemList, od.orderedItemCount);
 					System.out.printf("%s", MainGUI.loggedinuser.phoneNum);
 					System.out.println(od.user.userId);
-					System.out.println("od ì¶œë ¥");
+					System.out.println("od Ãâ·Â");
 					System.out.println(od.toString());
 					/*Order order = new Order();
-					//ê²°ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ? ì˜ˆ ëˆŒë €ì„ë•Œ ë™ì‘ì´ ì—¬ê¸°
+					//°áÁ¦ÇÏ½Ã°Ú½À´Ï±î? ¿¹ ´­·¶À»¶§ µ¿ÀÛÀÌ ¿©±â
 						order.orderCreate(od);*/
 					lastorderId++;
 					
@@ -143,9 +143,9 @@ public class BasketGui {
 			}
 			
 			
-			else if(buttonName.equals("ì¥ë°”êµ¬ë‹ˆ ë¹„ìš°ê¸°")) {
+			else if(buttonName.equals("Àå¹Ù±¸´Ï ºñ¿ì±â")) {
 				int result = JOptionPane.showConfirmDialog(null,
-						"ì •ë§ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?","Confirm",JOptionPane.YES_NO_OPTION);
+						"Á¤¸» Áö¿ì½Ã°Ú½À´Ï±î?","Confirm",JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.CLOSED_OPTION) {
 					return;
 					}
@@ -195,7 +195,7 @@ public class BasketGui {
 					primage.setBackground(Color.white);
 					
 			
-					JButton address = new JButton("ë°°ì†¡ë²ˆí˜¸: " + od.address);
+					JButton address = new JButton("¹è¼Û¹øÈ£: " + od.address);
 					address.setSize(130,120);
 					address.setBorderPainted(false);
 					address.setBackground(Color.white);

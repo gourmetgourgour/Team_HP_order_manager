@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import store.Order;
+
 public class Manager<T extends Manageable> {
 	public ArrayList<T> mList = new ArrayList<>();
 	
@@ -33,7 +35,7 @@ public class Manager<T extends Manageable> {
 		try {
 			filein = new Scanner(new File(filename));
 		} catch (Exception e) {
-			System.out.println(filename + ": ���� ����");
+			System.out.println(filename + ": 파일 없음");
 			System.exit(0);
 		}
 		return filein;
@@ -71,7 +73,7 @@ public class Manager<T extends Manageable> {
 			for(T m: mList) {
 				kwd = m.getinfo();
 				writer.write(kwd + "\n");
-			   System.out.println("test"+kwd+" test");
+			   System.out.println("write "+kwd+" test");
 			}
 			 writer.close();
 		} catch (IOException e) {
@@ -81,4 +83,14 @@ public class Manager<T extends Manageable> {
 		
 		 
 	}
+	@SuppressWarnings("unchecked")
+	public void odread(Order od, Factory<T> fac) {
+		T m = null;
+		m = fac.create();
+		m = (T) od;
+		mList.add(m);
+	}
+	
+
+
 }

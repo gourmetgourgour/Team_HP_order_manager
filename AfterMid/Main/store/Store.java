@@ -5,20 +5,20 @@ import mgr.*;
 
 public class Store {
 	Scanner scan = new Scanner(System.in);
-	static Manager<Item> itemMgr = new Manager<>();
-	static Manager<User> userMgr = new Manager<>();
-	static Manager<Admin> adminMgr = new Manager<>();
-	static Manager<Order> orderMgr = new Manager<>();
-	static Manager<Stock> stockMgr = new Manager<>();
-	static Manager<Cart> cartMgr = new Manager<>();
+	public static Manager<Item> itemMgr = new Manager<>();
+	public static Manager<User> userMgr = new Manager<>();
+	public static Manager<Admin> adminMgr = new Manager<>();
+	public static Manager<Order> orderMgr = new Manager<>();
+	public static Manager<Stock> stockMgr = new Manager<>();
+
 	
 	public void run() {
 		System.out.println("영번째");
 		readAllManager();
 		System.out.println("첫번째");
-		writeAllManager();
+		//writeAllManager();
 		System.out.println("두번째");
-		readAllManager2();
+		//readAllManager2();
 		Menu menu = new Menu();
 		//menu.loginMenu(scan);
 	}

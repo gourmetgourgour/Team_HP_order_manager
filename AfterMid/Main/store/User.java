@@ -6,12 +6,12 @@ import mgr.Manageable;
 
 
 public class User implements Manageable{
-    String userId;
-    String pwd;
-    String address;   
-    String phoneNum;
-    static ArrayList<Order> myOrderList = new ArrayList<>();
-    ArrayList<Cart> myShoppingCart = new ArrayList<>();
+    public String userId;
+    public String pwd;
+    public String address;   
+    public String phoneNum;
+    public static ArrayList<Order> myOrderList = new ArrayList<>();
+
     
     @Override
     public void read(Scanner scan) {
@@ -36,7 +36,7 @@ public class User implements Manageable{
 		return false;
     }
 
-    void addOrder(Order od) {
+    public void addOrder(Order od) {
     	myOrderList.add(od);
 	}
 

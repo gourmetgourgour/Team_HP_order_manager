@@ -5,18 +5,18 @@ import java.util.Scanner;
 
 
 public class Item implements Manageable {
-    String prCode;
-    String prType;
-	String  prName;
-	int prPrice;
-	int prStock;
-	String prSize;
-	String prMeta;
-	String prColor;
-	String prDesc;
-	String primg;
-	int prDeliver;
-	int prDeliver2;
+	  public String prCode;
+	    public String prType;
+	    public String  prName;
+	    public int prPrice;
+	    public int prStock;
+	    public String prSize;
+	    public String prMeta;
+	    public String prColor;
+	    public String prDesc;
+	    public String primg;
+		public int prDeliver;
+		public int prDeliver2;
     
     public void read(Scanner scan) {
         prCode = scan.next();
@@ -41,6 +41,7 @@ public class Item implements Manageable {
         System.out.print(primg);
         prDeliver = scan.nextInt();
         System.out.println(prDeliver);
+        prDeliver2 = scan.nextInt();
     }
     
     public void print() { // Item
@@ -65,7 +66,7 @@ public class Item implements Manageable {
         return true;
     }
 
-	int getSubtotal(int count) {
+	public int getSubtotal(int count) {
 		return prPrice * count;
 	}
 	public String getinfo() {

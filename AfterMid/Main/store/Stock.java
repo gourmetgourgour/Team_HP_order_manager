@@ -5,6 +5,7 @@ import mgr.Manageable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Stock implements Manageable{
@@ -22,14 +23,15 @@ public class Stock implements Manageable{
 		 prCode2 = scan.next();
 	     newStock = scan.nextInt();
 	     tempDate = scan.next();
-	     StockDate = LocalDate.parse(tempDate); 
+	     DateTimeFormatter Ndate = DateTimeFormatter.ofPattern("yyyyMMdd");
+	     StockDate = LocalDate.parse(tempDate, Ndate); 
 	    
 	     periodDate = (int) ChronoUnit.DAYS.between(testDate,StockDate);
 	        System.out.print(periodDate);
 	        
 	    Item item = null;
 		item = (Item)Store.itemMgr.find(prCode2);
-		item.prDeliver2 = periodDate;
+		item.prDeliver2 = periodDate+2;
 		
 		stockChangeList.add(this);
 	    }
@@ -48,14 +50,23 @@ public class Stock implements Manageable{
 	
 	static public void stockChange(String kwd) {
 		int alpha; 
-		Item item = null;
-		item = (Item)Store.itemMgr.find(kwd);
+		Stock beta = new Stock();
+		Item item = (Item)Store.itemMgr.find(kwd);
 		item.prDeliver = item.prDeliver2;
+		item.prStock = beta.newStock;
 		Stock sInfo = null;
 		sInfo = (Stock)Store.stockMgr.find(kwd);
+		if (sInfo == null)
+			return;
 		alpha = sInfo.newStock;
 		
 		item.prStock = alpha; 
 		
+	}
+
+	@Override
+	public String getinfo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

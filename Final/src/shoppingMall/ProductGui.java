@@ -1,4 +1,5 @@
 package shoppingMall;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalDate;
@@ -14,7 +15,9 @@ public class ProductGui {
 	Order od = new Order();
 	int newOrderid = Store.orderMgr.mList.get
 			(Store.orderMgr.mList.size()-1).orderId + 1;
-	Font font = new Font("Serif",Font.BOLD, 20);
+	
+	Font f1 = new Font("Aharoni", Font.BOLD, 15);
+	Font f2 = new Font("Aharoni 굵게", Font.BOLD, 20);
 	JPanel productPanel = new JPanel();
 	JScrollPane scroll = new JScrollPane(productPanel, 
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, 
@@ -32,7 +35,7 @@ public class ProductGui {
 			ImageIcon productimg =getImg(imgnum, 150);
 			
 			JButton product = new JButton(productimg);
-			product.setBackground(Color.white);
+			product.setBackground(new Color(255, 255, 212));
 			productPanel.add(product);
 			product.addActionListener(new ActionListener(){
 				@Override
@@ -54,6 +57,7 @@ public class ProductGui {
 		productInfoframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		Container pane = productInfoframe.getContentPane();
 		pane.setLayout(null);
+		pane.setBackground(new Color(201, 245, 255));
 		
 		
 		ImageIcon productimg = getImg(clickeditem.primg, 300);
@@ -65,31 +69,31 @@ public class ProductGui {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYYMMdd");
 		String prDate = Date.format(formatter);
 		JLabel arrivaldate = new JLabel("배송예정일: " + prDate);
-		arrivaldate.setFont(font);
+		arrivaldate.setFont(f1);
 		arrivaldate.setBounds(10, 310, 300 , 50);
 		pane.add(arrivaldate);
 		
 		String prprice = Integer.toString(clickeditem.prPrice);
 		JLabel price = new JLabel("가격 :" +prprice);
-		price.setFont(font);
+		price.setFont(f1);
 		price.setBounds(10, 350, 300, 50);
 		pane.add(price);
 		
 		String prsize = clickeditem.prSize;
 		JLabel size = new JLabel("사이즈 :" + prsize);
-		size.setFont(font);
+		size.setFont(f1);
 		size.setBounds(10, 400, 300, 50);
 		pane.add(size);
 		
 		String prtype = clickeditem.prType;
 		JLabel type = new JLabel("소재 :" + prtype);
-		type.setFont(font);
+		type.setFont(f1);
 		type.setBounds(10,450,300,50);
 		pane.add(type);
 		
 		String prcolor = clickeditem.prColor;
 		JLabel color = new JLabel("색상 :" + prcolor);
-		color.setFont(font);
+		color.setFont(f1);
 		color.setBounds(10, 500, 300, 50);
 		pane.add(color);
 		
@@ -98,34 +102,34 @@ public class ProductGui {
 		
 		String prname = clickeditem.prName;
 		JLabel name = new JLabel(prname);
-		name.setFont(new Font("Serif",Font.BOLD, 20));
+		name.setFont(f2);
 		name.setBounds(350, 10, 400, 80);
 		pane.add(name);
 		
 		String prdesc = clickeditem.prDesc;
 		JTextArea desc = new JTextArea(prdesc);
-		desc.setFont(font);
+		desc.setFont(f1);
 		desc.setLineWrap(true);
-		desc.setBounds(350, 200, 400, 200);
+		desc.setBounds(350, 110, 400, 200);
 		pane.add(desc);
 		
 		JLabel qtcheck = new JLabel("수량 :");
-		qtcheck.setFont(font);
-		qtcheck.setBounds(350, 400, 100, 50);
+		qtcheck.setFont(f1);
+		qtcheck.setBounds(350, 350, 100, 50);
 		pane.add(qtcheck);
 		
 		JTextField quantity = new JTextField("1");
-		quantity.setFont(font);
+		quantity.setFont(f1);
 		quantity.setEditable(false);
-		quantity.setBounds(430, 400, 100, 50);
+		quantity.setBounds(430, 350, 100, 50);
 		pane.add(quantity);
 		
 		JButton up = new JButton("UP");
 		JButton down = new JButton("DOWN");
-		up.setBounds(570, 400, 80, 40);
-		up.setBackground(Color.white);
-		down.setBounds(660, 400, 80, 40);
-		down.setBackground(Color.white);
+		up.setBounds(570, 350, 80, 40);
+		up.setBackground(new Color(255, 222, 212));
+		down.setBounds(660, 350, 80, 40);
+		down.setBackground(new Color(255, 222, 212));
 		up.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -151,8 +155,8 @@ public class ProductGui {
 		
 		
 		JButton addtobasket = new JButton("장바구니에 추가");
-		addtobasket.setBounds(350, 500, 400,50);
-		addtobasket.setBackground(Color.white);
+		addtobasket.setBounds(350, 450, 400,50);
+		addtobasket.setBackground(new Color(255, 255, 212));
 		addtobasket.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -171,7 +175,7 @@ public class ProductGui {
 				productInfoframe.dispose();
 			}
 		});
-		addtobasket.setFont(font);
+		addtobasket.setFont(f1);
 		pane.add(addtobasket);
 		
 		addtobasket.addActionListener(null);
@@ -187,7 +191,4 @@ public class ProductGui {
 		ImageIcon productimg = new ImageIcon(changeImg);
 		return productimg;
 	}
-	
-	
-	
 }
